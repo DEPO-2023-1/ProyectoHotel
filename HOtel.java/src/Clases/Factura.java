@@ -1,0 +1,10 @@
+package Clases;
+public class Factura {
+    
+
+
+
+
+
+
+}

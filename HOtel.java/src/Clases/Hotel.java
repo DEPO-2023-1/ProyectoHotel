@@ -1,16 +1,21 @@
+package Clases;
 import java.util.Date;
+import java.util.ArrayList;
 import java.io.*;
 
 
 
 public class Hotel {
+	
+	private ArrayList<Huesped> huespeds;
+	private ArrayList<Grupo> grupos;
 
     public Hotel(){
         
     }
 
     public int seleccionarUsuario(String login, String contraseña){
-
+    	return 3;
     }
 
     public void agregarConsumo(){
@@ -25,14 +30,14 @@ public class Hotel {
     }
 
     private Boolean reservaDisponible(){
-
-    }
-
-    private Huesped agregarHuesped(){
-
+    	return true;
     }
 /*
-    private Grupo agregarGrupo(Huesped[] lista){
+    private Huesped agregarHuesped(){
+    	
+    }
+
+    private Grupo agregarGrupo(ArrayList<Huesped> huespedes){
 
     }
 */
@@ -45,7 +50,7 @@ public class Hotel {
     }
 
     public String checkOut(){
-
+    	return "hola";
     }
 
     public void CargarHotel(){
@@ -60,7 +65,7 @@ public class Hotel {
 
     }
 
-    private  void cargarInformacionArchivo(File habitaciones, File archivoUsuario, File inventario, File servicio, menuComedor, File menuCuarto){
+    private  void cargarInformacionArchivo(File habitaciones, File archivoUsuario, File inventario, File servicio, File menuComedor, File menuCuarto){
 
     }
 
