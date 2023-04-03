@@ -2,13 +2,13 @@ public class Otro {
     
 
     //atributos//
-    private String Nombre;
+    private String nombre;
     private double precio;
 
     //constructor//
-    public Otro (String Nombre, double precio){
-        Nombre=this.Nombre;
-        precio=this.precio;
+    public Otro (String nombre, double precio){
+        this.nombre = nombre;
+        this.precio = precio;
     }
     public String getNombre() {
         return Nombre;

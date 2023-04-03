@@ -10,8 +10,8 @@ public class Reserva {
     // constructor //
 
     public Reserva(Date fechaInicio, Date fechaFin){
-        fechaInicio = this.fechaInicio;
-        fechaFin = this.fechaFin;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
     }
 
     // metodos //

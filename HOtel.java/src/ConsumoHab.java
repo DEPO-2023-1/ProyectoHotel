@@ -10,9 +10,9 @@ public class ConsumoHab {
 
     public ConsumoHab(String idHabitacion, String tipo, String servicio){
 
-        idHabitacion = this.idHabitacion;
-        tipo = this.tipo;
-        servicio = this.servicio;
+        this.idHabitacion = idHabitacion;
+        this.tipo = tipo;
+        this.servicio = servicio;
     }
 
     //metodos//
