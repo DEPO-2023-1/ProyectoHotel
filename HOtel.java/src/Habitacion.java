@@ -30,9 +30,6 @@ public class Habitacion {
 	public String getUbicacion() {
 		return ubicacion;
 	}
-	public void setUbicacion(String ubicacion) {
-		this.ubicacion = ubicacion;
-	}
 	public int getCapacidadNino() {
 		return capacidadNino;
 	}
@@ -48,20 +45,11 @@ public class Habitacion {
 	public Boolean getBalcon() {
 		return balcon;
 	}
-	public void setBalcon(Boolean balcon) {
-		this.balcon = balcon;
-	}
 	public Boolean getCocina() {
 		return cocina;
 	}
-	public void setCocina(Boolean cocina) {
-		this.cocina = cocina;
-	}
 	public Boolean getVista() {
 		return vista;
-	}
-	public void setVista(Boolean vista) {
-		this.vista = vista;
 	}
 	public double getPrecioI() {
 		return precioI;
@@ -71,8 +59,5 @@ public class Habitacion {
 	}
 	public double getPrecioF() {
 		return precioF;
-	}
-	public void setPrecioF(double precioF) {
-		this.precioF = precioF;
 	}
 }
