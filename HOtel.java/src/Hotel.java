@@ -1,3 +1,8 @@
+import java.util.Date;
+import java.io.*;
+
+
+
 public class Hotel {
 
     public void Hotel(){
@@ -31,7 +36,7 @@ public class Hotel {
 
     }
 
-    private void agregarReserva(Grupo grupo, date iniclaDate, date finalDate, String tipoHabitacion){
+    private void agregarReserva(Grupo grupo, Date iniclaDate, Date finalDate, String tipoHabitacion){
 
     }
 
@@ -43,7 +48,7 @@ public class Hotel {
 
     }
 
-    public void CargarHotelManual(inte opcion){
+    public void CargarHotelManual(int opcion){
 
     }
 
@@ -51,7 +56,7 @@ public class Hotel {
 
     }
 
-    private cargarInformacionArchivo(File habitaciones, File archivoUsuario, File inventario, File servicio, menuComedor, File menuCuarto){
+    private  void cargarInformacionArchivo(File habitaciones, File archivoUsuario, File inventario, File servicio, menuComedor, File menuCuarto){
 
     }
 
@@ -67,7 +72,7 @@ public class Hotel {
 
     }
     
-    private void cargarServicio(File servicio){
+    private void cargarServicio(File Servicio){
 
     }
     
