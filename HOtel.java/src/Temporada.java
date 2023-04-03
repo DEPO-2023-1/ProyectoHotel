@@ -30,4 +30,7 @@ public class Temporada {
     public double getAumento(){
         return aumento;
     }
+    public void setAumento(double aumento){
+        this.aumento = aumento;
+    }
 }
