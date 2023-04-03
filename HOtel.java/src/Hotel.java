@@ -5,7 +5,7 @@ import java.io.*;
 
 public class Hotel {
 
-    public void Hotel(){
+    public Hotel(){
         
     }
 
@@ -40,15 +40,19 @@ public class Hotel {
 
     }
 
+    public void cancelarReserva(){
+
+    }
+
     public String checkOut(){
 
     }
 
-    public void CargarHotel(int opcion){
+    public void CargarHotel(){
 
     }
 
-    public void CargarHotelManual(int opcion){
+    public void CargarHotelManual(){
 
     }
 
