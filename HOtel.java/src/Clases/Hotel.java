@@ -30,7 +30,7 @@ public class Hotel {
 
     }
 
-    public void CrearReserva(){
+    public void crearReserva(){
         int canNinos = Integer.parseInt(input("Ingrese la cantidad de niños que ocuparán camas por favor"));
         int canAdultos = Integer.parseInt(input("Ingrese la cantidad de adultos por favor"));
     }
