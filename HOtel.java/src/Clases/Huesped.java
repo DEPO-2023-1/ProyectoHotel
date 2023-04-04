@@ -4,13 +4,13 @@ public class Huesped {
 
     //atributos//
     private String nombre;
-    private String cedula;
+    private int cedula;
     private String correo;
     private int edad;
     
 
     //constructor//
-    public Huesped(String nombre, String cedula, String correo, int edad) {
+    public Huesped(String nombre, int cedula, String correo, int edad) {
         this.nombre = nombre;
         this.cedula = cedula;
         this.correo = correo;
@@ -26,11 +26,11 @@ public class Huesped {
         this.nombre = nombre;
     }
     
-    public String getCedula() {
+    public int getCedula() {
         return cedula;
     }
     
-    public void setCedula(String cedula) {
+    public void setCedula(int cedula) {
         this.cedula = cedula;
     }
     

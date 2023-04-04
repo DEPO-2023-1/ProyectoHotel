@@ -31,23 +31,71 @@ public class Hotel {
     }
 
     public void crearReserva(){
-        int canNinos = Integer.parseInt(input("Ingrese la cantidad de niños que ocuparán camas por favor"));
-        int canAdultos = Integer.parseInt(input("Ingrese la cantidad de adultos por favor"));
+        String disponible = reservaDisponible();
+        if (disponible == "") {
+        	System.out.println("lo siento no hay cupos disponibles");
+        }
+        else {
+        	ArrayList<Huesped> huespedList = new ArrayList<Huesped>();
+        	boolean centinela = true;
+        	while(centinela) {
+        		Huesped huesped = agregarHuesped();
+        		huespedList.add(huesped);
+        		
+        		System.out.println("Ingrese una opcion");
+        		System.out.println("1- Agregar otro huesped");
+        		System.out.println("2- Terminar proceso");
+        		int nuevo = Integer.parseInt(input(""));
+        		if (nuevo == 2) {
+        			centinela = false;
+        		}
+        	}
+        	
+        	agregarGrupo(huespedList, disponible);
+        	
+        }
+        
         
     }
 
-    private Boolean reservaDisponible(){
-    	return true;
-    }
-/*
-    private Huesped agregarHuesped(){
+    private String reservaDisponible(){
+    	String respuesta = "";
     	
+    	int canNinos = Integer.parseInt(input("Ingrese la cantidad de niños que ocuparán camas por favor"));
+        int canAdultos = Integer.parseInt(input("Ingrese la cantidad de adultos por favor"));
+        
+        for (Habitacion h: habitaciones) {
+			int maxNinos = h.getCapacidadNino();
+			int maxAdultos = h.getCapaciodadAdulto();
+			boolean disponible = h.getDisponible();
+			
+			if (disponible && maxNinos >= canNinos && maxAdultos >= canAdultos) {
+				respuesta = h.getIdHabitacion();
+				break;
+			}
+		}
+        
+        return respuesta;
     }
 
-    private Grupo agregarGrupo(ArrayList<Huesped> huespedes){
-
+    private Huesped agregarHuesped(){
+    	System.out.println("Por favor ingrese sus datos\n\n\n");
+		String nombre = input("Ingrese su nombre");
+		int cedula = Integer.parseInt(input("Ingrese su cedula"));
+		int edad = Integer.parseInt(input("Ingrese su edad"));
+		String correo = input("Ingrese su correo, si no tiene ingrese enter");
+		
+		Huesped huesped = new Huesped(nombre, cedula, correo, edad);
+    	 
+    	return huesped;
+    		
     }
-*/
+
+    private Grupo agregarGrupo(ArrayList<Huesped> huespedes, String IDHabitacion){
+    	Grupo grupo = new Grupo(IDHabitacion, huespedes);
+    	return grupo;
+    }
+
     private void agregarReserva(Grupo grupo, Date iniclaDate, Date finalDate, String tipoHabitacion){
 
     }

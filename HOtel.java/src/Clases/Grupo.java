@@ -6,17 +6,13 @@ import java.util.ArrayList;
 public class Grupo {
 
     //atributos clase//
-    private ArrayList<Huesped> huespedes;
-
-    //atributos//
+    private ArrayList<Huesped> grupo;
     private String IDHabitacion;
-    private ArrayList<String> grupo;
     
     //constructor//
-    public Grupo(String IDHabitacion, ArrayList<String> grupo, ArrayList<Huesped> huespedes) {
+    public Grupo(String IDHabitacion, ArrayList<Huesped> grupo) {
         this.IDHabitacion = IDHabitacion;
         this.grupo = grupo;
-        this.huespedes=huespedes;
     }
     
     // metodos//
@@ -28,11 +24,11 @@ public class Grupo {
         this.IDHabitacion = IDHabitacion;
     }
     
-    public ArrayList<String> getGrupo() {
+    public ArrayList<Huesped> getGrupo() {
         return grupo;
     }
     
-    public void setGrupo(ArrayList<String> grupo) {
+    public void setGrupo(ArrayList<Huesped> grupo) {
         this.grupo = grupo;
     }
 }
