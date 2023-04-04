@@ -1,7 +1,7 @@
 package Clases;
 import java.util.ArrayList;
 
-public class Habitacion {
+public abstract class Habitacion {
     
 	//atributos clases//
 	private ArrayList<Temporada> temporadas;
