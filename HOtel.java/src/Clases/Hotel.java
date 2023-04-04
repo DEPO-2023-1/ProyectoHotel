@@ -75,6 +75,8 @@ public class Hotel {
     private void cargarHabitacion(File habitaciones){
 
     }
+    
+  
 
     private void cargarUsuarios(File archivoUsuario){
 

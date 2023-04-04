@@ -1,9 +1,13 @@
 package Clases;
-
+import java.io.Serializable;
 import java.io.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+
+class Hotel implements Serializable{
+	Hotel hotel;
+}
 
 public abstract class App {
 
