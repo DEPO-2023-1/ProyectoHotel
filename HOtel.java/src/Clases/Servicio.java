@@ -11,8 +11,10 @@ public class Servicio {
     private double precioConsumo;
     
     //constructor//
-    public Servicio(double precioConsumo) {
+    public Servicio(double precioConsumo, ArrayList<Otro> otros, Restaurante restaurante) {
         this.precioConsumo = precioConsumo;
+        this.otros=otros;
+        this.restaurante=restaurante;
     }
     
     //metodos//

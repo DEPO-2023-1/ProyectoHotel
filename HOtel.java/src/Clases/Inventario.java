@@ -5,14 +5,15 @@ import java.util.ArrayList;
 public class Inventario {
 
     //atributos clase//
-    private ArrayList<ConsumoHot> ConsumoInventarios;
+    private ArrayList<ConsumoHot> consumoInventarios;
 
     //atributos//
     private File inventario;
     
     //constructor//
-    public Inventario(File inventario) {
+    public Inventario(File inventario, ArrayList<ConsumoHot> consumoInventarios) {
         this.inventario = inventario;
+        this.consumoInventarios = consumoInventarios;
     }
     
     //metodos//

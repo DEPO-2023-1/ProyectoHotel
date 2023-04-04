@@ -15,11 +15,13 @@ public class ConsumoHab {
 
     //constructor//
 
-    public ConsumoHab(String idHabitacion, String tipo, String servicio){
+    public ConsumoHab(ArrayList<ConsumoHot> ConsumosHabitacion, ArrayList<Servicio> servicios, String idHabitacion, String tipo, String servicio){
 
         this.idHabitacion = idHabitacion;
         this.tipo = tipo;
         this.servicio = servicio;
+        this.ConsumosHabitacion=ConsumosHabitacion;
+        this.servicios=servicios;
     }
 
     //metodos//

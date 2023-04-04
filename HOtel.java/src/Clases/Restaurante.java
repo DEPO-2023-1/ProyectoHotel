@@ -10,8 +10,9 @@ public class Restaurante {
     private String menu;
     
     //constructor//
-    public Restaurante(String menu) {
+    public Restaurante(String menu, ArrayList<Producto> productos) {
         this.menu = menu;
+        this.productos=productos;
     }
     
     //metodos//

@@ -23,6 +23,26 @@ public class Habitacion {
 	private double precioI;
 	private double precioF;
 
+	//constructor//
+	public Habitacion(ArrayList<Temporada> temporadas, ArrayList<Reserva> reservas, ArrayList<Grupo> grupos,
+	Factura factura, String idHabitacion, Boolean disponible, String ubicacion, int capacidadNino, int capaciodadAdulto,
+	Boolean balcon, Boolean cocina, Boolean vista, double precioI, double precioF){
+		this.temporadas=temporadas;
+		this.reservas=reservas;
+		this.grupos=grupos;
+		this.factura=factura;
+		this.idHabitacion=idHabitacion;
+		this.disponible=disponible;
+		this.ubicacion=ubicacion;
+		this.capacidadNino=capacidadNino;
+		this.capaciodadAdulto=capaciodadAdulto;
+		this.balcon=balcon;
+		this.cocina=cocina;
+		this.vista=vista;
+		this.precioI=precioI;
+		this.precioF=precioF;
+	}
+
     //metodos//
 
     public String getIdHabitacion() {
