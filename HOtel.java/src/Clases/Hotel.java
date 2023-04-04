@@ -31,7 +31,20 @@ public class Hotel {
     }
 
     public void crearReserva(){
-        String disponible = reservaDisponible();
+    	
+    	int inicialAnio = Integer.parseInt(input("Ingrese el año del dia de inicio del reserva"));
+        int inicialMes = Integer.parseInt(input("Ingrese el mes de día del inicio de reserva"));
+        int inicialDia = Integer.parseInt(input("Ingrese el día del inicio de reserva"));
+        int finalAnio = Integer.parseInt(input("Ingrese el año del dia del final de reserva"));
+        int finalMes = Integer.parseInt(input("Ingrese el mes de día del final de reserva"));
+        int finalDia = Integer.parseInt(input("Ingrese el día del final de reserva"));
+        
+        @SuppressWarnings("deprecation")
+		Date inicialDate = new Date(inicialAnio, inicialMes, inicialDia);
+        @SuppressWarnings("deprecation")
+		Date finalDate = new Date(finalAnio, finalMes, finalDia);
+    	
+        String disponible = reservaDisponible(inicialDate, finalDate);
         if (disponible == "") {
         	System.out.println("lo siento no hay cupos disponibles");
         }
@@ -50,15 +63,14 @@ public class Hotel {
         			centinela = false;
         		}
         	}
-        	
-        	agregarGrupo(huespedList, disponible);
-        	
+        	Grupo grupo = agregarGrupo(huespedList, disponible);
+	        
+	        agregarReserva(grupo, inicialDate, finalDate, disponible);
+	        
         }
-        
-        
     }
 
-    private String reservaDisponible(){
+    private String reservaDisponible(Date inicialDate, Date finalDate){
     	String respuesta = "";
     	
     	int canNinos = Integer.parseInt(input("Ingrese la cantidad de niños que ocuparán camas por favor"));
@@ -67,7 +79,7 @@ public class Hotel {
         for (Habitacion h: habitaciones) {
 			int maxNinos = h.getCapacidadNino();
 			int maxAdultos = h.getCapaciodadAdulto();
-			boolean disponible = h.getDisponible();
+			boolean disponible = h.disponibleEnFecha(inicialDate, finalDate);
 			
 			if (disponible && maxNinos >= canNinos && maxAdultos >= canAdultos) {
 				respuesta = h.getIdHabitacion();
@@ -96,8 +108,16 @@ public class Hotel {
     	return grupo;
     }
 
-    private void agregarReserva(Grupo grupo, Date iniclaDate, Date finalDate, String tipoHabitacion){
-
+    private void agregarReserva(Grupo grupo, Date inicialDate, Date finalDate, String IDHabitacion){
+    	
+    	for (Habitacion h: habitaciones) {
+    		String nomHabitacion = h.getIdHabitacion();
+    		if (nomHabitacion == IDHabitacion) {
+    			h.addGrupo(grupo);
+    			h.addReserva(inicialDate, finalDate);
+    		}
+    	}
+    	
     }
 
     public void cancelarReserva(){

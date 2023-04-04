@@ -1,5 +1,8 @@
 package Clases;
 import java.util.ArrayList;
+import java.util.Date;
+
+
 
 public abstract class Habitacion {
     
@@ -24,12 +27,11 @@ public abstract class Habitacion {
 	private double precioF;
 
 	//constructor//
-	public Habitacion(ArrayList<Temporada> temporadas, ArrayList<Reserva> reservas, ArrayList<Grupo> grupos,
-	Factura factura, String idHabitacion, Boolean disponible, String ubicacion, int capacidadNino, int capaciodadAdulto,
+	public Habitacion(Factura factura, String idHabitacion, Boolean disponible, String ubicacion, int capacidadNino, int capaciodadAdulto,
 	Boolean balcon, Boolean cocina, Boolean vista, double precioI, double precioF){
-		this.temporadas=temporadas;
-		this.reservas=reservas;
-		this.grupos=grupos;
+		this.temporadas = new ArrayList<Temporada>();
+		this.reservas = new ArrayList<Reserva>();;
+		this.grupos = new ArrayList<Grupo>();;
 		this.factura=factura;
 		this.idHabitacion=idHabitacion;
 		this.disponible=disponible;
@@ -44,7 +46,38 @@ public abstract class Habitacion {
 	}
 
     //metodos//
-
+	
+	public boolean disponibleEnFecha(Date inicialDate, Date finalDate) {
+		
+		boolean respuesta = true;
+		for (Reserva r: reservas) {
+			Date reservaInicio = r.getFechaInicio();
+			Date reservaFinal = r.getFechaFin();
+			if ((inicialDate.before(reservaInicio)&&finalDate.after(reservaInicio))||(inicialDate.before(reservaFinal)&&finalDate.after(reservaFinal))) {
+				respuesta = false;
+				break;
+			}
+		}
+		return respuesta;
+	}
+	
+	
+	public void addTemporada(Date inicialDate, Date finalDate, double aumento) {
+		
+		Temporada temporada = new Temporada(inicialDate, finalDate, aumento);
+		temporadas.add(temporada);
+		
+	}
+	
+	public void addReserva(Date inicialDate, Date finalDate) {
+		Reserva reserva = new Reserva(inicialDate, finalDate);
+		reservas.add(reserva);
+	}
+	
+	public void addGrupo(Grupo grupo) {
+		grupos.add(grupo);
+	}
+	
     public String getIdHabitacion() {
 		return idHabitacion;
 	}
