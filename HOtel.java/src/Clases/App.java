@@ -10,7 +10,7 @@ public abstract class App {
     private static Hotel hotel;
     
     public static void inicializacion() throws IOException, ClassNotFoundException{
-		File file = new File("info//infoHotel.bin");
+		File file = new File("info//infoHOtel.bin");
 		if (!file.exists()) {
 			Hotel newHotel = new Hotel();
 			hotel = newHotel;
@@ -22,14 +22,14 @@ public abstract class App {
 	}
     
     public static Hotel readFile() throws IOException, ClassNotFoundException{
-    	try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("info//infoHotel.bin"))) {
+    	try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("info//infoHOtel.bin"))) {
 			Hotel hotel = (Hotel) objectInputStream.readObject();
 			return hotel;
 		}
     }
     
     public static void writeFile()throws IOException, FileNotFoundException{
-    	try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("info//infoHotel.bin"))) {
+    	try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("info//infoHOtel.bin"))) {
 			objectOutputStream.writeObject(hotel);
 		}
     }
@@ -58,14 +58,13 @@ public abstract class App {
     public static  void ejecutarOpciones(){
 
         boolean continuar = true;
+		String login = input("Ingrese su Login por favor: ");
+        String contrasena = input("Ingrese su contraseña por favor: ");
+		int tipo = hotel.seleccionarUsuario(login, contrasena);
 		while (continuar)
 		{
 			try
 			{   
-                String login = input("Ingrese su Login por favor: ");
-                String contrasena = input("Ingrese su contraseña por favor: ");
-
-                int tipo = hotel.seleccionarUsuario(login, contrasena);
 
                 mostrarMenu(tipo);
 
@@ -100,7 +99,10 @@ public abstract class App {
 						hotel.agregarConsumo();
 					}
 					else if (opcion == 2) {
-						hotel.agregarPago();;
+						hotel.agregarPago();
+					}
+					else if (opcion == 3) {
+						continuar = false;
 					}
 				}
 				

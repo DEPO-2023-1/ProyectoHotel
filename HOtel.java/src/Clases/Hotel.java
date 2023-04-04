@@ -9,9 +9,12 @@ public class Hotel {
 	
 	private ArrayList<Huesped> huespeds;
 	private ArrayList<Grupo> grupos;
+    private String hola;
+
 
     public Hotel(){
-        
+        this.hola = "casa";
+        String nuevo = hola;
     }
 
     public int seleccionarUsuario(String login, String contraseña){
