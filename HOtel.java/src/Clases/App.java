@@ -10,28 +10,33 @@ public abstract class App {
     private static Hotel hotel;
     
     public static void inicializacion() throws IOException, ClassNotFoundException{
-		File file = new File("info//infoHOtel.bin");
+		File file = new File("HOtel.java/info/infoHotel.bin");
 		if (!file.exists()) {
+			System.out.println("suuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
 			Hotel newHotel = new Hotel();
 			hotel = newHotel;
 		}
 		else {
+			
 			hotel = readFile();
 		}
 		
 	}
+
     
     public static Hotel readFile() throws IOException, ClassNotFoundException{
-    	try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("info//infoHOtel.bin"))) {
+    	try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("HOtel.java/info/infoHotel.bin"))) {
 			Hotel hotel = (Hotel) objectInputStream.readObject();
 			return hotel;
 		}
+		
     }
     
     public static void writeFile()throws IOException, FileNotFoundException{
-    	try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("info//infoHOtel.bin"))) {
+    	try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("HOtel.java/info/infoHotel.bin"))) {
 			objectOutputStream.writeObject(hotel);
 		}
+		
     }
     
     
