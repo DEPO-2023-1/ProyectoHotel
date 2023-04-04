@@ -1,15 +1,41 @@
 package Clases;
 
+import java.io.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class App {
+public abstract class App {
 
     private static Hotel hotel;
     
+    public static void inicializacion() throws IOException, ClassNotFoundException{
+		File file = new File("info//infoHotel.bin");
+		if (!file.exists()) {
+			Hotel newHotel = new Hotel();
+			hotel = newHotel;
+		}
+		else {
+			hotel = readFile();
+		}
+		
+	}
     
-    public void mostrarMenu(int opcion) {
+    public static Hotel readFile() throws IOException, ClassNotFoundException{
+    	try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("info//infoHotel.bin"))) {
+			Hotel hotel = (Hotel) objectInputStream.readObject();
+			return hotel;
+		}
+    }
+    
+    public static void writeFile()throws IOException, FileNotFoundException{
+    	try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("info//infoHotel.bin"))) {
+			objectOutputStream.writeObject(hotel);
+		}
+    }
+    
+    
+    public static void mostrarMenu(int opcion) {
     	
     	if (opcion == 1) {
     		System.out.println("1- Cargar Informacion hotel con archivos");
@@ -29,7 +55,7 @@ public class App {
     	
     }
 
-    public void ejecutarOpciones(){
+    public static  void ejecutarOpciones(){
 
         boolean continuar = true;
 		while (continuar)
@@ -93,7 +119,7 @@ public class App {
     }
 
 
-    public String input(String mensaje)
+    public static String input(String mensaje)
 	{
 		try
 		{
@@ -110,11 +136,12 @@ public class App {
 	}
 
 
-
-
     public static void main(String[] args) throws Exception {
-        App aplicacion = new App();
-        aplicacion.ejecutarOpciones();
+        
+        App.inicializacion();
+        App.ejecutarOpciones();
+        
+        App.writeFile();
 
     }
 }
