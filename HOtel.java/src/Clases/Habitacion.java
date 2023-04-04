@@ -155,23 +155,25 @@ public abstract class Habitacion {
 
 	public void calcularPrecioTotal(double precioIntermedio, Date inicialDate, Date finalDate, ArrayList<Temporada> temporadas){
 		double aumento = 0;
+		double aumento1 = 0;
+		double aumento2 = 0;
+
 		if(dayofWeek(inicialDate)==6 && dayofWeek(finalDate)==7){
 			precioIntermedio = precioIntermedio + 0.05*precioIntermedio;
 		}
 		else{
-			double aumento1 = 0.0;
-			double aumento2 = 0.0;
 			for(Temporada t: temporadas) {
 				Date fechaInicio = t.getFechaIn();
 				Date fechaFinal = t.getFechaFin();
-				if(inicialDate.before(fechaInicio) && inicialDate.after(fechaFinal)){
+				if(inicialDate.after(fechaInicio) && inicialDate.before(fechaFinal)){
 					aumento1 = t.getAumento();
 				}
-				if(finalDate.before(fechaInicio) && inicialDate.after(fechaFinal)){
-					aumento2 = t.getAumento();
+				if(finalDate.after(fechaInicio) && inicialDate.before(fechaFinal)){
+					aumento2=t.getAumento();
 				}
 	
 			}
+	
 			if(aumento1 > aumento2){
 				aumento = aumento2;
 	
