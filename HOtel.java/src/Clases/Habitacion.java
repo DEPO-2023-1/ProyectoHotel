@@ -1,6 +1,7 @@
 package Clases;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Calendar;
 
 
 
@@ -122,5 +123,60 @@ public abstract class Habitacion {
 	}
 	public double getPrecioF() {
 		return precioF;
+	}
+
+	public double calcularPrecioIntermedio(int capacidadNino, int capaciodadAdulto, Boolean balcon, Boolean cocina,
+	Boolean vista, double precioI){
+
+		double intermedio = precioI;
+		if (capacidadNino >2){
+			intermedio = intermedio + precioI*0.05;
+		}
+		if(capaciodadAdulto > 2){
+			intermedio = intermedio + precioI*0.05;
+		}
+		if(balcon){
+			intermedio = intermedio + precioI*0.05;
+		}
+		if(cocina){
+			intermedio = intermedio + precioI*0.05;
+		}
+		if(vista){
+			intermedio = intermedio + precioI*0.05;
+		}
+		return intermedio;
+	}
+
+	public int dayofWeek(Date date) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		return calendar.get(Calendar.DAY_OF_WEEK);
+	}
+
+	public void calcularPrecioTotal(double precioIntermedio, Date inicialDate, Date finalDate, ArrayList<Temporada> temporadas){
+		if(dayofWeek(inicialDate)==6 && dayofWeek(finalDate)==7){
+			precioIntermedio = precioIntermedio + 0.05*precioIntermedio;
+		}else{
+			for(Temporada t: temporadas){
+				Date inicio = t.getFechaIn();
+				Date final = t.getFechaFin();
+				if(inicialDate.before(inicio) && inicialDate.after(final)){
+					double aumento1 = t.getAumento();
+				}
+				if(finalDate.before(inicio) && inicialDate.after(final)){
+					double aumento2=t.getAumento();
+				}
+	
+	
+			}
+	
+			if(aumento1 > aumento2){
+				double aumento = aumento2;
+	
+			}else{
+				double aumento = aumento1;
+			}
+		}
+		this.precioF= precioIntermedio + aumento;
 	}
 }
