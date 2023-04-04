@@ -17,7 +17,6 @@ public abstract class App {
 			hotel = newHotel;
 		}
 		else {
-			
 			hotel = readFile();
 		}
 		
