@@ -94,6 +94,15 @@ public abstract class App {
 						hotel.checkOut();
 					}
 				}
+
+				if (tipo == 3) {
+					if (opcion == 1) {
+						hotel.agregarConsumo();
+					}
+					else if (opcion == 2) {
+						hotel.agregarPago();;
+					}
+				}
 				
 				else if (opcion == 0)
 				{
@@ -103,10 +112,6 @@ public abstract class App {
 				else if (hotel == null)
 				{
 					System.out.println("Para poder ejecutar esta opción primero debe cargar un archivo de atletas.");
-				}
-				else
-				{
-					System.out.println("Por favor seleccione una opción válida.");
 				}
 			}
 			catch (NumberFormatException e)
