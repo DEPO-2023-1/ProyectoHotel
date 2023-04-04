@@ -52,10 +52,10 @@ public class App {
 
 				if (tipo == 1) {
 					if (opcion == 1) {
-						hotel.CargarHotel();
+						hotel.cargarHotel();
 					}
 					else if (opcion == 2) {
-						hotel.CargarHotelManual();
+						hotel.cargarHotelManual();
 					}
 					else if (opcion == 3) {
 						hotel.actualizarInformacion();
@@ -64,7 +64,7 @@ public class App {
 				
 				if (tipo == 2) {
 					if (opcion == 1) {
-						hotel.CrearReserva();
+						hotel.crearReserva();
 					}
 					else if (opcion == 2) {
 						hotel.cancelarReserva();

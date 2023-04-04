@@ -59,11 +59,11 @@ public class Hotel {
     	return "hola";
     }
 
-    public void CargarHotel(){
-
+    public void cargarHotel(){
+        System.out.println("hola");
     }
 
-    public void CargarHotelManual(){
+    public void cargarHotelManual(){
 
     }
 
