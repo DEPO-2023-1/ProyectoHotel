@@ -16,7 +16,7 @@ public class Hotel {
     private Inventario inventario;
 
     public Hotel(){
-        
+    	this.grupos = new ArrayList<Grupo>();
     }
 
     public int seleccionarUsuario(String login, String contraseña){
@@ -44,17 +44,15 @@ public class Hotel {
         @SuppressWarnings("deprecation")
 		Date finalDate = new Date(finalAnio, finalMes, finalDia);
     	
-        String disponible = reservaDisponible(inicialDate, finalDate);
-        if (disponible == "") {
+        String IDHabitacion = reservaDisponible(inicialDate, finalDate);
+        if (IDHabitacion == "") {
         	System.out.println("lo siento no hay cupos disponibles");
         }
         else {
-        	ArrayList<Huesped> huespedList = new ArrayList<Huesped>();
+        	Grupo grupo = new Grupo(IDHabitacion);
         	boolean centinela = true;
         	while(centinela) {
-        		Huesped huesped = agregarHuesped();
-        		huespedList.add(huesped);
-        		
+        		agregarHuespedGrupo(grupo);
         		System.out.println("Ingrese una opcion");
         		System.out.println("1- Agregar otro huesped");
         		System.out.println("2- Terminar proceso");
@@ -63,9 +61,8 @@ public class Hotel {
         			centinela = false;
         		}
         	}
-        	Grupo grupo = agregarGrupo(huespedList, disponible);
 	        
-	        agregarReserva(grupo, inicialDate, finalDate, disponible);
+	        agregarReserva(grupo, inicialDate, finalDate, IDHabitacion);
 	        
         }
     }
@@ -90,22 +87,15 @@ public class Hotel {
         return respuesta;
     }
 
-    private Huesped agregarHuesped(){
+    private void agregarHuespedGrupo(Grupo grupo){
     	System.out.println("Por favor ingrese sus datos\n\n\n");
 		String nombre = input("Ingrese su nombre");
 		int cedula = Integer.parseInt(input("Ingrese su cedula"));
 		int edad = Integer.parseInt(input("Ingrese su edad"));
 		String correo = input("Ingrese su correo, si no tiene ingrese enter");
 		
-		Huesped huesped = new Huesped(nombre, cedula, correo, edad);
-    	 
-    	return huesped;
-    		
-    }
-
-    private Grupo agregarGrupo(ArrayList<Huesped> huespedes, String IDHabitacion){
-    	Grupo grupo = new Grupo(IDHabitacion, huespedes);
-    	return grupo;
+		grupo.addHuesped(nombre, cedula, edad, correo);
+		
     }
 
     private void agregarReserva(Grupo grupo, Date inicialDate, Date finalDate, String IDHabitacion){
