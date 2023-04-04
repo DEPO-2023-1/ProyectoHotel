@@ -9,6 +9,11 @@ public class Hotel {
 	
 	private ArrayList<Huesped> huespeds;
 	private ArrayList<Grupo> grupos;
+    private ArrayList<Servicio> servicios;
+    private ArrayList<ConsumoHot> consumosHotel;
+    private ArrayList<Habitacion> habitaciones;
+    private ArrayList<Usuario> usuarios;
+    private Inventario inventario;
 
     public Hotel(){
         
