@@ -1,6 +1,15 @@
 package Clases;
+import java.util.ArrayList;
+
 public class Habitacion {
     
+	//atributos clases//
+	private ArrayList<Temporada> temporadas;
+	private ArrayList<Reserva> reservas;
+	private ArrayList<Grupo> grupos;
+	private Factura factura;
+
+
 	//atributos//
 	
 	private String idHabitacion;

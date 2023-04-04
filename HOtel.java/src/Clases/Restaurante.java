@@ -1,5 +1,10 @@
 package Clases;
+import java.util.ArrayList;
+
 public class Restaurante {
+
+    //atributos clase//
+    private ArrayList<Producto> productos;
 
     //atributos//
     private String menu;

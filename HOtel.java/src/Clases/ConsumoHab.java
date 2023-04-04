@@ -1,6 +1,12 @@
 package Clases;
+import java.util.ArrayList;
+
 public class ConsumoHab {
     
+    //atributos clases//
+    private ArrayList<ConsumoHot> ConsumosHabitacion;
+    private ArrayList<Servicio> servicios;
+
     //atributos//
 
     private String idHabitacion;
