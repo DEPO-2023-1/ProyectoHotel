@@ -26,7 +26,8 @@ public class Hotel {
     }
 
     public void CrearReserva(){
-
+        int canNinos = Integer.parseInt(input("Ingrese la cantidad de niños que ocuparán camas por favor"));
+        int canAdultos = Integer.parseInt(input("Ingrese la cantidad de adultos por favor"));
     }
 
     private Boolean reservaDisponible(){
@@ -93,7 +94,21 @@ public class Hotel {
         
     }
 
-
+public String input(String mensaje)
+	{
+		try
+		{
+			System.out.print(mensaje + ": ");
+			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+			return reader.readLine();
+		}
+		catch (IOException e)
+		{
+			System.out.println("Error leyendo de la consola");
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 
 
