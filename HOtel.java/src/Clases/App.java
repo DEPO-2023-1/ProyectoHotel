@@ -15,8 +15,8 @@ public class App {
     	
     	if (opcion == 1) {
     		System.out.println("1- Cargar Informacion hotel con archivos");
-    		System.out.println("2- Cargar Informacion hotel manualmente");
-    		System.out.println("3- Actualizar infomación hotel");
+    		System.out.println("2- Cargar Informacion Habitaciones manualmente");
+    		System.out.println("3- Actualizar infomación del hotel");
     	}
     	else if (opcion == 2) {
     		System.out.println("1- Crear una reserva");
