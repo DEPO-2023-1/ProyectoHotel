@@ -83,6 +83,10 @@ public class Hotel {
         if (IDHabitacion == "") {
         	System.out.println("lo siento no hay cupos disponibles");
         }
+		else if (IDHabitacion == "no"){
+			System.out.println("lo siento no hay cupos disponibles");
+		}
+
         else {
         	Grupo grupo = new Grupo(IDHabitacion);
         	boolean centinela = true;
@@ -115,6 +119,15 @@ public class Hotel {
 			
 			if (disponible && maxNinos >= canNinos && maxAdultos >= canAdultos) {
 				respuesta = h.getIdHabitacion();
+				float precioIntermedio = h.getPrecioF();
+				float precioFinal = h.calcularPrecioTotal(precioIntermedio, inicialDate, finalDate)
+				System.out.println("El valor de su reserva es: " + precioFinal);
+        		System.out.println("1- Aceptar precio");
+        		System.out.println("2- Cancelar reserva");
+        		int nuevo = Integer.parseInt(input(""));
+        		if (nuevo == 2) {
+        			respuesta = "";
+        		}
 				break;
 			}
 		}
@@ -297,10 +310,8 @@ public class Hotel {
 			String tipo = datos[1];
 			float cantidad = Float.parseFloat(datos[2]);
 			
-			Servio inventario1 = new Inventario(producto, cantidad);
+			Servicio inventario1 = new Servicio(nombre, tipo, cantidad);
 			inventarios.add(inventario1);
-			
-			
 			
 			linea = lector.readLine();
 		}
@@ -316,8 +327,35 @@ public class Hotel {
     private void cargarMenuCuarto(String menuCuarto){
         
     }
-    private void cargarTemporada(String temporada) {
+    private void cargarTemporada(String temporada) throws IOException {
     	
+		File archivo = new File(temporada);
+		BufferedReader lector = new BufferedReader(new FileReader(archivo));
+		String linea = lector.readLine();
+		while(linea!=null) {
+
+			String [] datos = linea.split(";");
+			String [] dateInicial = datos[0].split(":");
+			int inicialAnio = Integer.parseInt(dateInicial[0]);
+			int inicialMes = Integer.parseInt(dateInicial[1]);
+			int inicialDia = Integer.parseInt(dateInicial[2]);
+			String [] dateFinal = datos[1].split(":");
+			int finalAnio = Integer.parseInt(dateFinal[0]);
+			int finalMes = Integer.parseInt(dateFinal[1]);
+			int finalDia = Integer.parseInt(dateFinal[2]);
+			
+			
+
+			float aumento = Float.parseFloat(datos[2]);
+			
+			Servicio inventario1 = new Servicio(nombre, tipo, cantidad);
+			inventarios.add(inventario1);
+			
+			linea = lector.readLine();
+		}
+		lector.close();
+
+
     }
 
 public String input(String mensaje)
