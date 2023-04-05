@@ -14,7 +14,6 @@ public class Hotel implements Serializable{
     private ArrayList<Servicio> servicios;
     private ArrayList<ConsumoHot> consumosHotel;
     private ArrayList<Habitacion> habitaciones;
-    private ArrayList<Usuario> usuarios;
     private ArrayList<Inventario> inventarios;
     private ArrayList<MenuRestaurante> productos;
 
@@ -313,14 +312,12 @@ public class Hotel implements Serializable{
     public void cargarHotel() throws IOException{
     	
     	String habitaciones = input("Ingrese la ruta de archivo con la informacion de las habitaciones");
-    	String usuario = input("Ingrese la ruta de archivo con la informacion de los usuarios");
     	String inventario = input("Ingrese la ruta de archivo con la informacion del inventario");
     	String servicio = input("Ingrese la ruta de archivo con la informacion de los servicios");
     	String restaurante = input("Ingrese la ruta de archivo con la informacion del restaurante");
     	String temporada = input("Ingrese la ruta de archivo con la informacion de las temporada");
     	
     	cargarHabitacion(habitaciones);
-    	cargarUsuarios(usuario);
     	cargarInventario(inventario);
     	cargarServicio(servicio);
     	cargarRestaurante(restaurante);
@@ -556,48 +553,12 @@ public class Hotel implements Serializable{
 						capaciodadAdulto, balcon, cocina, vista, PrecioI);
 				habitaciones.add(habitacion);
 			}
-			
-			linea = lector.readLine();
-		}
-		lector.close();
-	}
 
-    private void cargarUsuarios(String rutUsuario) throws IOException{
-    	
-    	File archivo = new File(rutUsuario);
-		BufferedReader lector = new BufferedReader(new FileReader(archivo));
-		String linea = lector.readLine();
-		while(linea!=null) {
-
-			String [] datos = linea.split(";");
-			
-			String tipo = datos[0];
-			String login = datos[1];
-			String contrasena = datos[2];
-			
-			
-			if (tipo.equals("Administrador")) {
-				Administrador usuario = new Administrador(contrasena, login);
-				usuarios.add(usuario);
-				
-			}
-			if (tipo.equals("Recepcionista")) {
-				Recepcionista usuario = new Recepcionista(contrasena, login);
-				usuarios.add(usuario);
-				
-			}
-			if (tipo.equals("Empleado")) {
-				Empleado usuario = new Empleado(contrasena, login);
-				usuarios.add(usuario);
-			}
-			
 			linea = lector.readLine();
 		}
 		lector.close();
 	}
     	
-    	
-
     private void cargarInventario(String rutinventario) throws IOException{
     	
     	File archivo = new File(rutinventario);
