@@ -98,6 +98,26 @@ public abstract class Habitacion implements Serializable{
 		
 	}
 	
+	public void setPrecioTemporada(Date inicialDate, Date finalDate, float cambio) {
+		for (Temporada t: temporadas) {
+			Date temporadaInicio = t.getFechaIn();
+			Date temporadaFinal = t.getFechaFin();
+			if ((inicialDate.before(temporadaInicio)&&finalDate.after(temporadaInicio))||(inicialDate.before(temporadaFinal)&&finalDate.after(temporadaFinal))) {
+				float aumento = t.getAumento();
+				if (aumento > cambio) {
+					t.setAumento(cambio);
+					addTemporada(inicialDate, finalDate, cambio);
+				}
+				else if (aumento < cambio) {
+					t.setAumento(cambio);
+					addTemporada(inicialDate, finalDate, aumento);
+				}
+			}	
+		}
+		
+	}
+	
+	
     public String getIdHabitacion() {
 		return idHabitacion;
 	}
