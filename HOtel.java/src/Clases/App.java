@@ -26,12 +26,13 @@ public class App {
     	else if (opcion == 3) {
     		System.out.println("1- Agregar consumo a una habitacion");
     		System.out.println("2- Agregar un pago de un consumo");
+    		System.out.println("3- Hacer factura");
     	}
     	
     	
     }
 
-    public void ejecutarOpciones(){
+    public void ejecutarOpciones() throws IOException{
 
         boolean continuar = true;
 		while (continuar)
@@ -68,6 +69,18 @@ public class App {
 					}
 					else if (opcion == 3) {
 						hotel.checkOut();
+					}
+				}
+				
+				if (tipo == 2) {
+					if (opcion == 1) {
+						hotel.agregarConsumo();
+					}
+					else if (opcion == 2) {
+						hotel.agregarPago();
+					}
+					else if (opcion == 3) {
+						hotel.factura();
 					}
 				}
 				

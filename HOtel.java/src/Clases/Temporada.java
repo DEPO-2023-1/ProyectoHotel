@@ -8,11 +8,11 @@ public class Temporada {
 
     private Date fechaIn;
     private Date fechaFin;
-    private double aumento;
+    private float aumento;
 
     //constructor//
 
-    public Temporada (Date fechaIn, Date fechaFin, double aumento){
+    public Temporada (Date fechaIn, Date fechaFin, float aumento){
         fechaIn = this.fechaIn;
         fechaFin = this.fechaFin;
         aumento = this.aumento;
@@ -28,10 +28,10 @@ public class Temporada {
         return fechaFin;
     }
 
-    public double getAumento(){
+    public float getAumento(){
         return aumento;
     }
-    public void setAumento(double aumento){
+    public void setAumento(float aumento){
         this.aumento = aumento;
     }
 }

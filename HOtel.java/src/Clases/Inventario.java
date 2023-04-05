@@ -7,21 +7,28 @@ public class Inventario {
     //atributos clase//
     private ArrayList<ConsumoHot> consumoInventarios;
 
-    //atributos//
-    private File inventario;
+    private String producto;
+    private int cantidad;
     
-    //constructor//
-    public Inventario(File inventario, ArrayList<ConsumoHot> consumoInventarios) {
-        this.inventario = inventario;
-        this.consumoInventarios = consumoInventarios;
-    }
-    
-    //metodos//
-    public File getInventario() {
-        return inventario;
-    }
+	public Inventario(String producto, int cantidad) {
 
-    public void setInventario(File inventario) {
-        this.inventario = inventario;
-    }
+		this.producto = producto;
+		this.cantidad = cantidad;
+	}
+	public String getProducto() {
+		return producto;
+	}
+	public void setProducto(String producto) {
+		this.producto = producto;
+	}
+	public int getCantidad() {
+		return cantidad;
+	}
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
+	}
+    
+    
+    
+    
 }

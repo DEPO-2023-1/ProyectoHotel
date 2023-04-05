@@ -11,39 +11,43 @@ public abstract class Habitacion {
 	private ArrayList<Temporada> temporadas;
 	private ArrayList<Reserva> reservas;
 	private ArrayList<Grupo> grupos;
-	private Factura factura;
+	private ArrayList<ConsumoHab> consumosHab;
+	private ArrayList<Factura> facturas;
 
 
 	//atributos//
 	
+	
 	private String idHabitacion;
-	private Boolean disponible;
 	private String ubicacion;
+	private String tipo;
 	private int capacidadNino;
 	private int capaciodadAdulto;
 	private Boolean balcon;
 	private Boolean cocina;
 	private Boolean vista;
-	private double precioI;
-	private double precioF;
+	private float precioI;
+	private float precioF;
 
 	//constructor//
-	public Habitacion(Factura factura, String idHabitacion, Boolean disponible, String ubicacion, int capacidadNino, int capaciodadAdulto,
-	Boolean balcon, Boolean cocina, Boolean vista, double precioI, double precioF){
+	public Habitacion(String idHabitacion, String tipo,String ubicacion, int capacidadNino, int capaciodadAdulto,
+	Boolean balcon, Boolean cocina, Boolean vista, float precioI){
 		this.temporadas = new ArrayList<Temporada>();
-		this.reservas = new ArrayList<Reserva>();;
-		this.grupos = new ArrayList<Grupo>();;
-		this.factura=factura;
-		this.idHabitacion=idHabitacion;
-		this.disponible=disponible;
-		this.ubicacion=ubicacion;
-		this.capacidadNino=capacidadNino;
-		this.capaciodadAdulto=capaciodadAdulto;
-		this.balcon=balcon;
-		this.cocina=cocina;
-		this.vista=vista;
-		this.precioI=precioI;
-		this.precioF=precioF;
+		this.reservas = new ArrayList<Reserva>();
+		this.grupos = new ArrayList<Grupo>();
+		this.facturas = new ArrayList<Factura>();
+		this.consumosHab = new ArrayList<ConsumoHab>();
+		this.idHabitacion = idHabitacion;
+		this.tipo = tipo;
+		this.ubicacion = ubicacion;
+		this.capacidadNino = capacidadNino;
+		this.capaciodadAdulto = capaciodadAdulto;
+		this.balcon = balcon;
+		this.cocina = cocina;
+		this.vista = vista;
+		this.precioI = precioI;
+		float valorIntermedio = calcularPrecioIntermedio(capacidadNino, capaciodadAdulto, balcon, cocina,vista, precioI);
+		this.precioF = valorIntermedio;
 	}
 
     //metodos//
@@ -63,7 +67,7 @@ public abstract class Habitacion {
 	}
 	
 	
-	public void addTemporada(Date inicialDate, Date finalDate, double aumento) {
+	public void addTemporada(Date inicialDate, Date finalDate, float aumento) {
 		
 		Temporada temporada = new Temporada(inicialDate, finalDate, aumento);
 		temporadas.add(temporada);
@@ -79,17 +83,25 @@ public abstract class Habitacion {
 		grupos.add(grupo);
 	}
 	
+	public void agregarConsumo(String IdHabitacion, String servicio) {
+		
+		ConsumoHab consumo = new ConsumoHab(IdHabitacion, "consumo", servicio);
+		consumosHab.add(consumo);
+		
+	}
+	
+	public void agregarPago(String IdHabitacion, String servicio) {
+		
+		ConsumoHab consumo = new ConsumoHab(IdHabitacion, "pago", servicio);
+		consumosHab.add(consumo);
+		
+	}
+	
     public String getIdHabitacion() {
 		return idHabitacion;
 	}
 	public void setIdHabitacion(String idHabitacion) {
 		this.idHabitacion = idHabitacion;
-	}
-	public Boolean getDisponible() {
-		return disponible;
-	}
-	public void setDisponible(Boolean disponible) {
-		this.disponible = disponible;
 	}
 	public String getUbicacion() {
 		return ubicacion;
@@ -115,34 +127,34 @@ public abstract class Habitacion {
 	public Boolean getVista() {
 		return vista;
 	}
-	public double getPrecioI() {
+	public float getPrecioI() {
 		return precioI;
 	}
-	public void setPrecioI(double precioI) {
+	public void setPrecioI(float precioI) {
 		this.precioI = precioI;
 	}
-	public double getPrecioF() {
+	public float getPrecioF() {
 		return precioF;
 	}
 
-	public double calcularPrecioIntermedio(int capacidadNino, int capaciodadAdulto, Boolean balcon, Boolean cocina,
-	Boolean vista, double precioI){
+	public float calcularPrecioIntermedio(int capacidadNino, int capaciodadAdulto, Boolean balcon, Boolean cocina,
+	Boolean vista, float precioI){
 
-		double intermedio = precioI;
+		float intermedio = precioI;
 		if (capacidadNino >2){
-			intermedio = intermedio + precioI*0.05;
+			intermedio = (float) (intermedio + precioI*0.05);
 		}
 		if(capaciodadAdulto > 2){
-			intermedio = intermedio + precioI*0.05;
+			intermedio = (float) (intermedio + precioI*0.05);
 		}
 		if(balcon){
-			intermedio = intermedio + precioI*0.05;
+			intermedio = (float) (intermedio + precioI*0.05);
 		}
 		if(cocina){
-			intermedio = intermedio + precioI*0.05;
+			intermedio = (float) (intermedio + precioI*0.05);
 		}
 		if(vista){
-			intermedio = intermedio + precioI*0.05;
+			intermedio = (float) (intermedio + precioI*0.05);
 		}
 		return intermedio;
 	}
@@ -153,14 +165,14 @@ public abstract class Habitacion {
 		return calendar.get(Calendar.DAY_OF_WEEK);
 	}
 
-	public void calcularPrecioTotal(double precioIntermedio, Date inicialDate, Date finalDate, ArrayList<Temporada> temporadas){
-		double aumento = 0;
+	public float calcularPrecioTotal(float precioIntermedio, Date inicialDate, Date finalDate){
+		float aumento = 0;
 		if(dayofWeek(inicialDate)==6 && dayofWeek(finalDate)==7){
-			precioIntermedio = precioIntermedio + 0.05*precioIntermedio;
+			precioIntermedio = (float) (precioIntermedio*1.05);
 		}
 		else{
-			double aumento1 = 0.0;
-			double aumento2 = 0.0;
+			float aumento1 = 0;
+			float aumento2 = 0;
 			for(Temporada t: temporadas) {
 				Date fechaInicio = t.getFechaIn();
 				Date fechaFinal = t.getFechaFin();
@@ -180,6 +192,10 @@ public abstract class Habitacion {
 			}
 			
 		}
-		this.precioF= precioIntermedio + aumento;
+		return precioIntermedio + aumento;
+	}
+
+	public String getTipo() {
+		return tipo;
 	}
 }
