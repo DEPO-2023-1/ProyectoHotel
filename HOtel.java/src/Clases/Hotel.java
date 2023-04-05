@@ -27,7 +27,7 @@ public class Hotel {
     	
     }
 
-    public int seleccionarUsuario(String login, String contraseña){
+    public int seleccionarUsuario(String login, String contraseña, int usuario){
     	return 3;
     }
 
@@ -120,7 +120,7 @@ public class Hotel {
 			if (disponible && maxNinos >= canNinos && maxAdultos >= canAdultos) {
 				respuesta = h.getIdHabitacion();
 				float precioIntermedio = h.getPrecioF();
-				float precioFinal = h.calcularPrecioTotal(precioIntermedio, inicialDate, finalDate)
+				float precioFinal = h.calcularPrecioTotal(precioIntermedio, inicialDate, finalDate);
 				System.out.println("El valor de su reserva es: " + precioFinal);
         		System.out.println("1- Aceptar precio");
         		System.out.println("2- Cancelar reserva");

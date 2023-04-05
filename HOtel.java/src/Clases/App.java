@@ -39,10 +39,17 @@ public class App {
 		{
 			try
 			{   
+				System.out.println("\nPor favor selecciones su tipo de usuario\n");
+				System.out.println("1- Administrador");
+				System.out.println("2- Recepcionista");
+				System.out.println("3- Empleado\n");
+
+				int usuario = Integer.parseInt(input(""));
+
                 String login = input("Ingrese su Login por favor: ");
                 String contrasena = input("Ingrese su contraseña por favor: ");
 
-                int tipo = hotel.seleccionarUsuario(login, contrasena);
+                int tipo = hotel.seleccionarUsuario(login, contrasena, usuario);
 
                 mostrarMenu(tipo);
 
