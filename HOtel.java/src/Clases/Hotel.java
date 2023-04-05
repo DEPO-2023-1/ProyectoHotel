@@ -38,7 +38,7 @@ public class Hotel {
     	
     	for (Habitacion h: habitaciones) {
 			String nombre = h.getIdHabitacion();
-			if (nombre == IDHabitacion) {
+			if (nombre.equals(IDHabitacion)) {
 				h.agregarConsumo(IDHabitacion, servicio);
 				break;
 			}
@@ -53,7 +53,7 @@ public class Hotel {
     	
     	for (Habitacion h: habitaciones) {
 			String nombre = h.getIdHabitacion();
-			if (nombre == IDHabitacion) {
+			if (nombre.equals(IDHabitacion)) {
 				h.agregarPago(IDHabitacion, servicio);
 				break;
 			}
@@ -80,10 +80,10 @@ public class Hotel {
 		Date finalDate = new Date(finalAnio, finalMes, finalDia);
     	
         String IDHabitacion = reservaDisponible(inicialDate, finalDate);
-        if (IDHabitacion == "") {
+        if (IDHabitacion.equals("")) {
         	System.out.println("lo siento no hay cupos disponibles");
         }
-		else if (IDHabitacion == "no"){
+		else if (IDHabitacion.equals("no")){
 			System.out.println("lo siento no hay cupos disponibles");
 		}
 
@@ -150,7 +150,7 @@ public class Hotel {
     	
     	for (Habitacion h: habitaciones) {
     		String nomHabitacion = h.getIdHabitacion();
-    		if (nomHabitacion == IDHabitacion) {
+    		if (IDHabitacion.equals(nomHabitacion)) {
     			h.addGrupo(grupo);
     			h.addReserva(inicialDate, finalDate);
     		}
@@ -213,20 +213,19 @@ public class Hotel {
 			Boolean vista = Boolean.parseBoolean(datos[7]);
 			float PrecioI = Float.parseFloat(datos[8]);
 			
-			if (tipo == "Standar") {
+			if (tipo.equals("Standar")) {
 				Standard habitacion = new Standard(idHabitacion, tipo, ubicacion, capacidadNino,
 						capaciodadAdulto, balcon, cocina, vista, PrecioI);
 				habitaciones.add(habitacion);
 				
 			}
-			else if (tipo == "Suite") {
+			else if (tipo.equals("Suite")) {
 				Suite habitacion = new Suite(idHabitacion, tipo, ubicacion, capacidadNino,
 						capaciodadAdulto, balcon, cocina, vista, PrecioI);
 				habitaciones.add(habitacion);
 				
 			}
-			else if (tipo == "SuitDoble") {
-				SuitDoble habitacion = new SuitDoble(idHabitacion, tipo, ubicacion, capacidadNino,
+			else if (tipo.equals("SuitDoble")) {				SuitDoble habitacion = new SuitDoble(idHabitacion, tipo, ubicacion, capacidadNino,
 						capaciodadAdulto, balcon, cocina, vista, PrecioI);
 				habitaciones.add(habitacion);
 			}
@@ -250,17 +249,17 @@ public class Hotel {
 			String contrasena = datos[2];
 			
 			
-			if (tipo == "Administrador") {
+			if (tipo.equals("Administrador")) {
 				Administrador usuario = new Administrador(contrasena, login);
 				usuarios.add(usuario);
 				
 			}
-			if (tipo == "Recepcionista") {
+			if (tipo.equals("Recepcionista")) {
 				Recepcionista usuario = new Recepcionista(contrasena, login);
 				usuarios.add(usuario);
 				
 			}
-			if (tipo == "Empleado") {
+			if (tipo.equals("Empleado")) {
 				Empleado usuario = new Empleado(contrasena, login);
 				usuarios.add(usuario);
 			}
@@ -344,12 +343,16 @@ public class Hotel {
 			int finalMes = Integer.parseInt(dateFinal[1]);
 			int finalDia = Integer.parseInt(dateFinal[2]);
 			
-
+			@SuppressWarnings("deprecation")
+			Date inicialDate = new Date(inicialAnio, inicialMes, inicialDia);
+			@SuppressWarnings("deprecation")
+			Date finalDate = new Date(finalAnio, finalMes, finalDia);
 
 			float aumento = Float.parseFloat(datos[2]);
 			
-			Servicio inventario1 = new Servicio(nombre, tipo, cantidad);
-			inventarios.add(inventario1);
+			for (Habitacion h: habitaciones){
+				h.addTemporada(inicialDate, finalDate, aumento);
+			}
 			
 			linea = lector.readLine();
 		}
