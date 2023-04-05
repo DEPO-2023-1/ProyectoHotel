@@ -165,7 +165,7 @@ public abstract class Habitacion {
 		return calendar.get(Calendar.DAY_OF_WEEK);
 	}
 
-	public float calcularPrecioTotal(double precioIntermedio, Date inicialDate, Date finalDate, ArrayList<Temporada> temporadas){
+	public float calcularPrecioTotal(float precioIntermedio, Date inicialDate, Date finalDate, ArrayList<Temporada> temporadas){
 		float aumento = 0;
 		if(dayofWeek(inicialDate)==6 && dayofWeek(finalDate)==7){
 			precioIntermedio = (float) (precioIntermedio*1.05);
