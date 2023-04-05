@@ -25,6 +25,8 @@ public class App {
     		System.out.println("1- Crear una reserva");
     		System.out.println("2- Cancelar una reserva");
     		System.out.println("3- Hacer Checkout");
+			System.out.println("4- Consultar inventario");
+			System.out.println("5- Condultar informaicon habitaciones");
     	}
     	else if (opcion == 3) {
     		System.out.println("1- Agregar consumo a una habitacion");
@@ -58,6 +60,7 @@ public class App {
                 	
 
 	                mostrarMenu(usuario);
+					System.out.println("0- salir de la apliacacion");
 	
 	                int opcion = Integer.parseInt((input("Seleccione una opcion por favor: ")));
 	
@@ -73,7 +76,7 @@ public class App {
 						}
 					}
 					
-					if (usuario == 2) {
+					else if (usuario == 2) {
 						if (opcion == 1) {
 							hotel.crearReserva();
 						}
@@ -83,9 +86,15 @@ public class App {
 						else if (opcion == 3) {
 							hotel.checkOut();
 						}
+						else if (opcion == 4) {
+							hotel.consultarInventario();
+						}
+						else if (opcion == 5) {
+							hotel.consultarHabitacion();
+						}
 					}
 					
-					if (usuario == 3) {
+					else if (usuario == 3) {
 						if (opcion == 1) {
 							hotel.agregarConsumo();
 						}
@@ -109,6 +118,12 @@ public class App {
 	            }
                 else {
                 	System.out.println("Usuario y/o contraseña incorrecta");
+					System.out.println("1- Salir de la apliacion");
+					System.out.println("2- Seguir");
+					int opcion = Integer.parseInt(input(""));
+					if (opcion == 1){
+						continuar = false;
+					}
                 }
 			}
 			catch (NumberFormatException e)

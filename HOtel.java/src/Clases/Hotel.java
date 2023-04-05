@@ -10,7 +10,6 @@ import java.io.*;
 
 public class Hotel implements Serializable{
 	
-	private ArrayList<Huesped> huespeds;
 	private ArrayList<Grupo> grupos;
     private ArrayList<Servicio> servicios;
     private ArrayList<ConsumoHot> consumosHotel;
@@ -21,7 +20,6 @@ public class Hotel implements Serializable{
 
     public Hotel(){
     	this.grupos = new ArrayList<Grupo>();
-    	this.huespeds = new ArrayList<Huesped>();
     	this.servicios = new ArrayList<Servicio>();
     	this.consumosHotel = new ArrayList<ConsumoHot>();
     	this.habitaciones = new ArrayList<Habitacion>();
@@ -96,6 +94,14 @@ public class Hotel implements Serializable{
     public void factura() {
     	
     }
+
+	public void consultarHabitacion(){
+
+	}
+
+	public void consultarInventario(){
+
+	}
 
     public void crearReserva(){
     	
