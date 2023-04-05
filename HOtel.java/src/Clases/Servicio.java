@@ -1,6 +1,6 @@
 package Clases;
 import java.io.Serializable;
-import java.util.ArrayList;
+
 
 public class Servicio implements Serializable{
 
@@ -32,6 +32,9 @@ public class Servicio implements Serializable{
 
 	public void setPrecio(float precio) {
 		this.precio = precio;
+	}
+	public String getTipo(){
+		return tipo;
 	}
     
     
