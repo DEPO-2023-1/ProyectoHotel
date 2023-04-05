@@ -359,7 +359,7 @@ public class Hotel implements Serializable{
     	cargarRestaurante(restaurante);
     	cargarTemporada(temporada);
 
-		System.out.println(temporada);
+		System.out.println("La carga ha sido exitosa");
     	
     }
 

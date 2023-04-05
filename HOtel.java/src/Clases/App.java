@@ -3,7 +3,6 @@ package Clases;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -149,13 +148,6 @@ public class App {
 		return null;
 	}
 
-/*public static void writeFile(Hotel hotel) throws IOException{
-
-		ObjectOutputStream objOS  = new ObjectOutputStream(new FileOutputStream("hotel.bin"));
-
-		objOS.writeObject(hotel);
-		
-	}*/
 
 	public static void serializarObjeto(Hotel hotel) {
         try (FileOutputStream fos = new FileOutputStream("hotel.bin");
@@ -166,15 +158,6 @@ public class App {
         }
     }
 
-
-	/*public static Hotel readFile() throws IOException, ClassNotFoundException{
-
-		ObjectInputStream objIS = new ObjectInputStream(new FileInputStream("hotel.bin"));
-
-		Hotel h1 = (Hotel) objIS.readObject();
-		return h1; 
-
-	}*/
 	public static Hotel deserializarObjeto(Class<Hotel> claseObjetivo) {
         Hotel objeto = null;
         try (FileInputStream fis = new FileInputStream("hotel.bin");
