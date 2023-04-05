@@ -34,13 +34,13 @@ public class Hotel {
 		try{
 			
 			if (usuario == 1){
-				direccion = "HOtel.java/data/admins";
+				direccion = "HOtel.java/data/admins.txt";
 			}
 			else if (usuario == 2){
-				direccion = "HOtel.java/data/recepcionistas";
+				direccion = "HOtel.java/data/recepcionistas.txt";
 			}
 			else if (usuario == 3){
-				direccion = "HOtel.java/data/empleado";
+				direccion = "HOtel.java/data/empleado.txt";
 			}
 			FileReader fileReader = new FileReader(direccion);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
