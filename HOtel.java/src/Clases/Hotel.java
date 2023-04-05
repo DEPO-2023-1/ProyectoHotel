@@ -38,7 +38,7 @@ public class Hotel {
     	
     	for (Habitacion h: habitaciones) {
 			String nombre = h.getIdHabitacion();
-			if (nombre == IDHabitacion) {
+			if (nombre.equals(IDHabitacion)) {
 				h.agregarConsumo(IDHabitacion, servicio);
 				break;
 			}
@@ -53,7 +53,7 @@ public class Hotel {
     	
     	for (Habitacion h: habitaciones) {
 			String nombre = h.getIdHabitacion();
-			if (nombre == IDHabitacion) {
+			if (nombre.equals(IDHabitacion)) {
 				h.agregarPago(IDHabitacion, servicio);
 				break;
 			}
@@ -80,9 +80,13 @@ public class Hotel {
 		Date finalDate = new Date(finalAnio, finalMes, finalDia);
     	
         String IDHabitacion = reservaDisponible(inicialDate, finalDate);
-        if (IDHabitacion == "") {
+        if (IDHabitacion.equals("")) {
         	System.out.println("lo siento no hay cupos disponibles");
         }
+		else if (IDHabitacion.equals("no")){
+			System.out.println("lo siento no hay cupos disponibles");
+		}
+
         else {
         	Grupo grupo = new Grupo(IDHabitacion);
         	boolean centinela = true;
@@ -115,6 +119,15 @@ public class Hotel {
 			
 			if (disponible && maxNinos >= canNinos && maxAdultos >= canAdultos) {
 				respuesta = h.getIdHabitacion();
+				float precioIntermedio = h.getPrecioF();
+				float precioFinal = h.calcularPrecioTotal(precioIntermedio, inicialDate, finalDate)
+				System.out.println("El valor de su reserva es: " + precioFinal);
+        		System.out.println("1- Aceptar precio");
+        		System.out.println("2- Cancelar reserva");
+        		int nuevo = Integer.parseInt(input(""));
+        		if (nuevo == 2) {
+        			respuesta = "";
+        		}
 				break;
 			}
 		}
@@ -137,7 +150,7 @@ public class Hotel {
     	
     	for (Habitacion h: habitaciones) {
     		String nomHabitacion = h.getIdHabitacion();
-    		if (nomHabitacion == IDHabitacion) {
+    		if (IDHabitacion.equals(nomHabitacion)) {
     			h.addGrupo(grupo);
     			h.addReserva(inicialDate, finalDate);
     		}
@@ -181,9 +194,9 @@ public class Hotel {
 
     }
 
-    private void cargarHabitacion(String habitaciones) throws IOException{
+    private void cargarHabitacion(String rutHabitaciones) throws IOException{
     	
-    	File archivo = new File(habitaciones);
+    	File archivo = new File(rutHabitaciones);
 		BufferedReader lector = new BufferedReader(new FileReader(archivo));
 		String linea = lector.readLine();
 		while(linea!=null) {
@@ -200,20 +213,19 @@ public class Hotel {
 			Boolean vista = Boolean.parseBoolean(datos[7]);
 			float PrecioI = Float.parseFloat(datos[8]);
 			
-			if (tipo == "Standar") {
+			if (tipo.equals("Standar")) {
 				Standard habitacion = new Standard(idHabitacion, tipo, ubicacion, capacidadNino,
 						capaciodadAdulto, balcon, cocina, vista, PrecioI);
 				habitaciones.add(habitacion);
 				
 			}
-			else if (tipo == "Suite") {
+			else if (tipo.equals("Suite")) {
 				Suite habitacion = new Suite(idHabitacion, tipo, ubicacion, capacidadNino,
 						capaciodadAdulto, balcon, cocina, vista, PrecioI);
 				habitaciones.add(habitacion);
 				
 			}
-			else if (tipo == "SuitDoble") {
-				SuitDoble habitacion = new SuitDoble(idHabitacion, tipo, ubicacion, capacidadNino,
+			else if (tipo.equals("SuitDoble")) {				SuitDoble habitacion = new SuitDoble(idHabitacion, tipo, ubicacion, capacidadNino,
 						capaciodadAdulto, balcon, cocina, vista, PrecioI);
 				habitaciones.add(habitacion);
 			}
@@ -237,17 +249,17 @@ public class Hotel {
 			String contrasena = datos[2];
 			
 			
-			if (tipo == "Administrador") {
+			if (tipo.equals("Administrador")) {
 				Administrador usuario = new Administrador(contrasena, login);
 				usuarios.add(usuario);
 				
 			}
-			if (tipo == "Recepcionista") {
+			if (tipo.equals("Recepcionista")) {
 				Recepcionista usuario = new Recepcionista(contrasena, login);
 				usuarios.add(usuario);
 				
 			}
-			if (tipo == "Empleado") {
+			if (tipo.equals("Empleado")) {
 				Empleado usuario = new Empleado(contrasena, login);
 				usuarios.add(usuario);
 			}
@@ -297,10 +309,8 @@ public class Hotel {
 			String tipo = datos[1];
 			float cantidad = Float.parseFloat(datos[2]);
 			
-			Servio inventario1 = new Inventario(producto, cantidad);
+			Servicio inventario1 = new Servicio(nombre, tipo, cantidad);
 			inventarios.add(inventario1);
-			
-			
 			
 			linea = lector.readLine();
 		}
@@ -316,8 +326,39 @@ public class Hotel {
     private void cargarMenuCuarto(String menuCuarto){
         
     }
-    private void cargarTemporada(String temporada) {
+    private void cargarTemporada(String temporada) throws IOException {
     	
+		File archivo = new File(temporada);
+		BufferedReader lector = new BufferedReader(new FileReader(archivo));
+		String linea = lector.readLine();
+		while(linea!=null) {
+
+			String [] datos = linea.split(";");
+			String [] dateInicial = datos[0].split(":");
+			int inicialAnio = Integer.parseInt(dateInicial[0]);
+			int inicialMes = Integer.parseInt(dateInicial[1]);
+			int inicialDia = Integer.parseInt(dateInicial[2]);
+			String [] dateFinal = datos[1].split(":");
+			int finalAnio = Integer.parseInt(dateFinal[0]);
+			int finalMes = Integer.parseInt(dateFinal[1]);
+			int finalDia = Integer.parseInt(dateFinal[2]);
+			
+			@SuppressWarnings("deprecation")
+			Date inicialDate = new Date(inicialAnio, inicialMes, inicialDia);
+			@SuppressWarnings("deprecation")
+			Date finalDate = new Date(finalAnio, finalMes, finalDia);
+
+			float aumento = Float.parseFloat(datos[2]);
+			
+			for (Habitacion h: habitaciones){
+				h.addTemporada(inicialDate, finalDate, aumento);
+			}
+			
+			linea = lector.readLine();
+		}
+		lector.close();
+
+
     }
 
 public String input(String mensaje)
