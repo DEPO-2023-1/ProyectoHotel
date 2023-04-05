@@ -325,6 +325,8 @@ public class Hotel implements Serializable{
     	cargarServicio(servicio);
     	cargarRestaurante(restaurante);
     	cargarTemporada(temporada);
+
+		System.out.println(temporada);
     	
     }
 
