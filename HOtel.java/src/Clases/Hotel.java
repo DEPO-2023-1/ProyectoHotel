@@ -194,9 +194,9 @@ public class Hotel {
 
     }
 
-    private void cargarHabitacion(String habitaciones) throws IOException{
+    private void cargarHabitacion(String rutHabitaciones) throws IOException{
     	
-    	File archivo = new File(habitaciones);
+    	File archivo = new File(rutHabitaciones);
 		BufferedReader lector = new BufferedReader(new FileReader(archivo));
 		String linea = lector.readLine();
 		while(linea!=null) {
@@ -344,7 +344,7 @@ public class Hotel {
 			int finalMes = Integer.parseInt(dateFinal[1]);
 			int finalDia = Integer.parseInt(dateFinal[2]);
 			
-			
+
 
 			float aumento = Float.parseFloat(datos[2]);
 			
