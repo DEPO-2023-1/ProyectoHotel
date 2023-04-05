@@ -116,6 +116,16 @@ public abstract class Habitacion implements Serializable{
 		
 	}
 	
+	public void delreserva(Date inicialDate, Date finalDate) {
+		for (Reserva r: reservas) {
+			Date dateInicio = r.getFechaInicio();
+			Date dateFinal = r.getFechaFin();
+			if ((dateInicio.equals(inicialDate)) && (dateFinal.equals(finalDate))) {
+				reservas.remove(r);
+			}
+		}
+	}
+	
 	
     public String getIdHabitacion() {
 		return idHabitacion;
