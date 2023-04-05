@@ -8,7 +8,7 @@ import java.io.*;
 
 
 
-public class Hotel {
+public class Hotel implements Serializable{
 	
 	private ArrayList<Grupo> grupos;
     private ArrayList<Servicio> servicios;

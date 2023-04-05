@@ -1,11 +1,12 @@
 package Clases;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Calendar;
 
 
 
-public abstract class Habitacion {
+public abstract class Habitacion implements Serializable{
     
 	//atributos clases//
 	private ArrayList<Temporada> temporadas;

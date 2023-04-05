@@ -1,9 +1,10 @@
 package Clases;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
 
-public class Grupo {
+public class Grupo implements Serializable{
 
     //atributos clase//
     private ArrayList<Huesped> huespedes;

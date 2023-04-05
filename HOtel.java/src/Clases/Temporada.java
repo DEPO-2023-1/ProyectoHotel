@@ -1,8 +1,9 @@
 package Clases;
 	
+import java.io.Serializable;
 import java.util.Date;
 
-public class Temporada {
+public class Temporada implements Serializable{
     
     //atributos//
 

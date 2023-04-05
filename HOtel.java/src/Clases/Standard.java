@@ -1,6 +1,5 @@
 package Clases;
 
-
 public class Standard extends Habitacion{
 
     public Standard(String idHabitacion, String tipo,String ubicacion, int capacidadNino, int capaciodadAdulto,

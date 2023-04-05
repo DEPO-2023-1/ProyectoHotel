@@ -1,7 +1,8 @@
 package Clases;
+import java.io.Serializable;
 import java.util.Date;
 
-public class Reserva {
+public class Reserva implements Serializable{
 
     // atributos //
     

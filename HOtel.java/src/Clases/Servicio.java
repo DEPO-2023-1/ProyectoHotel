@@ -1,7 +1,8 @@
 package Clases;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Servicio {
+public class Servicio implements Serializable{
 
     //atributos//
     private String nombre;

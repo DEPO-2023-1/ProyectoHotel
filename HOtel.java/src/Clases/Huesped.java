@@ -1,6 +1,8 @@
 package Clases;
 
-public class Huesped {
+import java.io.Serializable;
+
+public class Huesped implements Serializable{
 
     //atributos//
     private String nombre;
