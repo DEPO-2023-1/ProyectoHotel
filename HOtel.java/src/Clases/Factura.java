@@ -1,7 +1,8 @@
 package Clases;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Factura {
+public class Factura implements Serializable{
     //atributos clase//
     private ArrayList<ConsumoHab> consumos;
     private ArrayList<ConsumoHot> ConsumosTotales;

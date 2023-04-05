@@ -1,5 +1,8 @@
 package Clases;
-public class Otro {
+
+import java.io.Serializable;
+
+public class Otro implements Serializable{
     
 
     //atributos//

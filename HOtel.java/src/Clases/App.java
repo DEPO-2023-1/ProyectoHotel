@@ -2,8 +2,11 @@ package Clases;
 
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectOutputStream;
 
 
 public class App {
@@ -138,6 +141,17 @@ public class App {
 		return null;
 	}
 
+public static void writeFile(Hotel hotel) throws IOException{
+
+		ObjectOutputStream objOS  = new ObjectOutputStream(new FileOutputStream("hotel.bin"));
+
+		objOS.writeObject(hotel);
+		
+	}
+
+	public static void readFile(){
+
+	}
 
 
 
@@ -145,7 +159,14 @@ public class App {
         App aplicacion = new App();
 		Hotel hotel1 = new Hotel();
 		hotel = hotel1;
-        aplicacion.ejecutarOpciones();
+    	aplicacion.ejecutarOpciones();
+		try{
+			writeFile(hotel);
+			}
+			catch(IOException e){
+				System.out.println(e.getMessage());
+			}
+	}	
 
-    }
+	
 }

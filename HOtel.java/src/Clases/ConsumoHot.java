@@ -1,6 +1,8 @@
 package Clases;
 
-public class ConsumoHot {
+import java.io.Serializable;
+
+public class ConsumoHot implements Serializable{
 
     //atributos//
     private String IDHabitacion;
