@@ -106,10 +106,6 @@ public class App {
 					{
 						System.out.println("Para poder ejecutar esta opción primero debe cargar un archivo de atletas.");
 					}
-					else
-					{
-						System.out.println("Por favor seleccione una opción válida.");
-					}
 	            }
                 else {
                 	System.out.println("Usuario y/o contraseña incorrecta");
