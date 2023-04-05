@@ -34,15 +34,14 @@ public class Hotel {
 		try{
 			
 			if (usuario == 1){
-				direccion = "./data/admins.txt";
+				direccion = "./data/admins";
 			}
 			else if (usuario == 2){
-				direccion = "./data/recepcionistas.txt";
+				direccion = "./data/recepcionistas";
 			}
 			else if (usuario == 3){
-				direccion = "./data/empleado.txt";
+				direccion = "./data/empleado";
 			}
-
 			FileReader fileReader = new FileReader(direccion);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line;
@@ -328,7 +327,7 @@ public class Hotel {
     }
     
     private void cargarServicio(String Servicio) throws IOException{
-    	
+    	/* 
     	File archivo = new File(Servicio);
 		BufferedReader lector = new BufferedReader(new FileReader(archivo));
 		String linea = lector.readLine();
@@ -346,7 +345,7 @@ public class Hotel {
 			linea = lector.readLine();
 		}
 		lector.close();
-    	
+    	*/
     	
     }
     

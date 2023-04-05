@@ -48,71 +48,78 @@ public class App {
 
                 String login = input("Ingrese su Login por favor: ");
                 String contrasena = input("Ingrese su contraseña por favor: ");
-
-                int tipo = hotel.seleccionarUsuario(login, contrasena, usuario);
-
-                mostrarMenu(tipo);
-
-                int opcion = Integer.parseInt((input("Seleccione una opcion por favor: ")));
-
-				if (tipo == 1) {
-					if (opcion == 1) {
-						hotel.cargarHotel();
-					}
-					else if (opcion == 2) {
-						hotel.cargarHotelManual();
-					}
-					else if (opcion == 3) {
-						hotel.actualizarInformacion();
-					}
-				}
+                
+                boolean tipo = hotel.seleccionarUsuario(login, contrasena, usuario);
 				
-				if (tipo == 2) {
-					if (opcion == 1) {
-						hotel.crearReserva();
+                if (tipo) {
+                	
+
+	                mostrarMenu(usuario);
+	
+	                int opcion = Integer.parseInt((input("Seleccione una opcion por favor: ")));
+	
+					if (usuario == 1) {
+						if (opcion == 1) {
+							hotel.cargarHotel();
+						}
+						else if (opcion == 2) {
+							hotel.cargarHotelManual();
+						}
+						else if (opcion == 3) {
+							hotel.actualizarInformacion();
+						}
 					}
-					else if (opcion == 2) {
-						hotel.cancelarReserva();
+					
+					if (usuario == 2) {
+						if (opcion == 1) {
+							hotel.crearReserva();
+						}
+						else if (opcion == 2) {
+							hotel.cancelarReserva();
+						}
+						else if (opcion == 3) {
+							hotel.checkOut();
+						}
 					}
-					else if (opcion == 3) {
-						hotel.checkOut();
+					
+					if (usuario == 3) {
+						if (opcion == 1) {
+							hotel.agregarConsumo();
+						}
+						else if (opcion == 2) {
+							hotel.agregarPago();
+						}
+						else if (opcion == 3) {
+							hotel.factura();
+						}
 					}
-				}
-				
-				if (tipo == 2) {
-					if (opcion == 1) {
-						hotel.agregarConsumo();
+					
+					else if (opcion == 0)
+					{
+						System.out.println("Saliendo de la aplicación ...");
+						continuar = false;
 					}
-					else if (opcion == 2) {
-						hotel.agregarPago();
+					else if (hotel == null)
+					{
+						System.out.println("Para poder ejecutar esta opción primero debe cargar un archivo de atletas.");
 					}
-					else if (opcion == 3) {
-						hotel.factura();
+					else
+					{
+						System.out.println("Por favor seleccione una opción válida.");
 					}
-				}
-				
-				else if (opcion == 0)
-				{
-					System.out.println("Saliendo de la aplicación ...");
-					continuar = false;
-				}
-				else if (hotel == null)
-				{
-					System.out.println("Para poder ejecutar esta opción primero debe cargar un archivo de atletas.");
-				}
-				else
-				{
-					System.out.println("Por favor seleccione una opción válida.");
-				}
+	            }
+                else {
+                	System.out.println("Usuario y/o contraseña incorrecta");
+                }
 			}
 			catch (NumberFormatException e)
 			{
 				System.out.println("Debe seleccionar uno de los números de las opciones.");
 			}
 		}
+}
 
-
-    }
+    
 
 
     public String input(String mensaje)
@@ -136,6 +143,8 @@ public class App {
 
     public static void main(String[] args) throws Exception {
         App aplicacion = new App();
+		Hotel hotel1 = new Hotel();
+		hotel = hotel1;
         aplicacion.ejecutarOpciones();
 
     }
