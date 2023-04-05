@@ -233,7 +233,7 @@ public class Hotel implements Serializable{
 	    	String idHabitacion = input("Ingrese el ID de la habitacion");
 			String tipo = input("Ingrese el tipo de la habitacion");
 			String ubicacion = input("Ingrese la ubicacion de la habitacion");
-			int capacidadNino = Integer.parseInt(input("Ingrese la cantidad maxima de niños de la habitacion"));
+			int capacidadNino = Integer.parseInt(input("Ingrese la cantidad maxima de adultos de la habitacion"));
 			int capaciodadAdulto = Integer.parseInt(input("Ingrese la cantidad maxima de niños de la habitacion"));
 			Boolean balcon = Boolean.parseBoolean(input("Ingrese true si la habitacion tiene Balcon, si no ingrese false"));
 			Boolean cocina = Boolean.parseBoolean(input("Ingrese true si la habitacion tiene Cocina, si no ingrese false"));
