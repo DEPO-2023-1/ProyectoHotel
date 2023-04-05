@@ -2,17 +2,18 @@ package Clases;
 
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 
 public class App {
-
-    private static Hotel hotel;
     
+	public static Hotel hotel;
     
     public void mostrarMenu(int opcion) {
     	
@@ -106,14 +107,10 @@ public class App {
 						}
 					}
 					
-					else if (opcion == 0)
+					if (opcion == 0)
 					{
 						System.out.println("Saliendo de la aplicación ...");
 						continuar = false;
-					}
-					else if (hotel == null)
-					{
-						System.out.println("Para poder ejecutar esta opción primero debe cargar un archivo de atletas.");
 					}
 	            }
                 else {
@@ -152,31 +149,63 @@ public class App {
 		return null;
 	}
 
-public static void writeFile(Hotel hotel) throws IOException{
+/*public static void writeFile(Hotel hotel) throws IOException{
 
 		ObjectOutputStream objOS  = new ObjectOutputStream(new FileOutputStream("hotel.bin"));
 
 		objOS.writeObject(hotel);
 		
-	}
+	}*/
 
-	public static void readFile(){
+	public static void serializarObjeto(Hotel hotel) {
+        try (FileOutputStream fos = new FileOutputStream("hotel.bin");
+                ObjectOutputStream salida = new ObjectOutputStream(fos);) {
+            salida.writeObject(hotel);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-	}
+
+	/*public static Hotel readFile() throws IOException, ClassNotFoundException{
+
+		ObjectInputStream objIS = new ObjectInputStream(new FileInputStream("hotel.bin"));
+
+		Hotel h1 = (Hotel) objIS.readObject();
+		return h1; 
+
+	}*/
+	public static Hotel deserializarObjeto(Class<Hotel> claseObjetivo) {
+        Hotel objeto = null;
+        try (FileInputStream fis = new FileInputStream("hotel.bin");
+                ObjectInputStream entrada = new ObjectInputStream(fis);) {
+            objeto = (Hotel) entrada.readObject();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return objeto;
+    }
+
 
 
 
     public static void main(String[] args) throws Exception {
         App aplicacion = new App();
+		
+		Hotel h1 = deserializarObjeto(Hotel.class);
+
+		if (h1 != null){
+		hotel = h1;
+		}
+		else {
+			System.out.println("hola");
 		Hotel hotel1 = new Hotel();
 		hotel = hotel1;
+		}
+		
     	aplicacion.ejecutarOpciones();
-		try{
-			writeFile(hotel);
-			}
-			catch(IOException e){
-				System.out.println(e.getMessage());
-			}
+		serializarObjeto(hotel);
+		
 	}	
 
 	
