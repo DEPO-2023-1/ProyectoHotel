@@ -1,7 +1,8 @@
 package Clases;
 import java.util.Date;
 
-
+import java.io.FileReader;
+import java.io.BufferedReader;
 import java.util.ArrayList;
 import java.io.*;
 
@@ -27,8 +28,38 @@ public class Hotel {
     	
     }
 
-    public int seleccionarUsuario(String login, String contraseña, int usuario){
-    	return 3;
+    public boolean seleccionarUsuario(String login, String contraseña, int usuario){
+		String direccion = "";
+		boolean result = false;
+		try{
+			
+			if (usuario == 1){
+				direccion = "./data/admins.txt";
+			}
+			else if (usuario == 2){
+				direccion = "./data/recepcionistas.txt";
+			}
+			else if (usuario == 3){
+				direccion = "./data/empleado.txt";
+			}
+
+			FileReader fileReader = new FileReader(direccion);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts[0].equals(login) && parts[1].equals(contraseña)) {
+                    result = true;
+                    break;
+				}
+			}
+            
+			bufferedReader.close();
+		}
+		catch (Exception e) {
+			System.out.println("error al leer el archivo " + direccion);
+		}
+		return result;
     }
 
     public void agregarConsumo(){
