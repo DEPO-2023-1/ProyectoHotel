@@ -6,10 +6,12 @@ public abstract class MenuRestaurante {
 	private float precio;
 	private String horaInicio;
 	private String horaFinal;
+	private String tipo;
 	
 	
-	public MenuRestaurante(String nombre, float precio, String horaInicio, String horaFinal) {
+	public MenuRestaurante(String nombre, String tipo, float precio, String horaInicio, String horaFinal) {
 		this.nombre = nombre;
+		this.tipo = tipo;
 		this.precio = precio;
 		this.horaInicio = horaInicio;
 		this.horaFinal = horaFinal;
@@ -54,6 +56,11 @@ public abstract class MenuRestaurante {
 
 	public void setHoraFinal(String horaFinal) {
 		this.horaFinal = horaFinal;
+	}
+
+
+	public String getTipo() {
+		return tipo;
 	}
 	
 	

@@ -262,12 +262,12 @@ public class Hotel {
 			
 			
 			if (tipo.equals("Comedor")) {
-				Comedor producto = new Comedor(nombre, precio, horaInicio, horaFinal);
+				Comedor producto = new Comedor(nombre, tipo, precio, horaInicio, horaFinal);
 				productos.add(producto);
 				
 			}
 			if (tipo.equals("ServicioHabitacion")) {
-				ServicioHab producto = new ServicioHab(nombre, precio, horaInicio, horaFinal);
+				ServicioHab producto = new ServicioHab(nombre, tipo, precio, horaInicio, horaFinal);
 				productos.add(producto);
 			}
 	    	
@@ -276,14 +276,133 @@ public class Hotel {
     }
 
     public void actualizarInformacion(){
-    	
+    	String respuesta = "Hubo un error";
+    	boolean aceptado = false;
     	System.out.println("Ingrese la opcion que quiere actualizar");
     	System.out.println("1- Actualizar informaicon habitaciones");
-    	System.out.println("2- Actualizar informaicon servicios");
-    	System.out.println("3- Actualizar informaicon productos");
+    	System.out.println("2- Actualizar informaicon tarifas en temporadas");
+    	System.out.println("3- Actualizar informaicon servicios");
+    	System.out.println("4- Actualizar informaicon productos de los menú");
     	int opcion = Integer.parseInt(input(""));
     	
+    	if (opcion == 1) {
+    		System.out.println("\nIngrese la opcion que quiere actualizar");
+        	System.out.println("1- Actualizar capacidad maxima de niños");
+        	System.out.println("2- Actualizar capacidad maxima de adultos");
+        	System.out.println("3- Actualizar precio por tipo de habitacion");
+        	int eleccion = Integer.parseInt(input(""));
+        	
+        	if (eleccion == 3) {
+        		String tipo = input("\nIngrese el tipo de la habitacion");
+        		for(Habitacion h: habitaciones) {
+            		String tipo2 = h.getTipo();
+            		if (tipo.equals(tipo2)) {
+            			float cambio = Float.parseFloat(input("Ingrese el nuevo precio"));
+            			h.setPrecioI(cambio);
+            			aceptado = true;
+            		}
+        		}
+        	}
+        	
+        	else {       
+        		String IDHabitacion = input("\nIngrese el ID de la habitacion");
+		    	for(Habitacion h: habitaciones) {
+		    		String nombre = h.getIdHabitacion();
+		    		if (nombre.equals(IDHabitacion)) {
+		    			if (eleccion == 1) {
+		    				int cambio = Integer.parseInt(input("Ingrese la nueva cantidad"));
+		    				h.setCapacidadNino(cambio);
+		    			}
+		    			if (eleccion == 2) {
+		    				int cambio = Integer.parseInt(input("Ingrese la nueva cantidad"));
+		    				h.setCapaciodadAdulto(cambio);
+		    			}
+		    			aceptado = true;
+		    			break;
+		    		}
+		    		
+		    	}
+        	}
+    	}
     	
+    	else if (opcion == 2) {
+    		String tipo = input("\nIngrese el tipo de la habitacion");
+    		for(Habitacion h: habitaciones) {
+        		String tipo2 = h.getTipo();
+        		if (tipo.equals(tipo2)) {
+        			
+        			int inicialAnio = Integer.parseInt(input("Ingrese el año del dia de inicio de la temporada"));
+        	        int inicialMes = Integer.parseInt(input("Ingrese el mes de día del inicio de la temporada"));
+        	        int inicialDia = Integer.parseInt(input("Ingrese el día del inicio de la temporada"));
+        	        int finalAnio = Integer.parseInt(input("Ingrese el año del dia del final de la temporada"));
+        	        int finalMes = Integer.parseInt(input("Ingrese el mes de día del final de la temporada"));
+        	        int finalDia = Integer.parseInt(input("Ingrese el día del final de la temporada"));
+        	        
+        	        float cambio = Float.parseFloat(input("Ingrese el nuevo precio"));
+        	        
+        	        @SuppressWarnings("deprecation")
+        			Date inicialDate = new Date(inicialAnio, inicialMes, inicialDia);
+        	        @SuppressWarnings("deprecation")
+        			Date finalDate = new Date(finalAnio, finalMes, finalDia);
+        	        
+        	        h.setPrecioTemporada(inicialDate, finalDate, cambio);
+        	        aceptado = true;
+        		}
+    		}
+    	}
+    	
+    	else if (opcion == 3) {
+    		String servicio = input("Ingrese el servicio que quiere actualizar");
+    		for (Servicio s: servicios) {
+    			String servicio2 = s.getNombre();
+    			if (servicio.equals(servicio2)) {
+    				float cambio = Float.parseFloat(input("Ingrese el nuevo precio del servicio"));
+    				s.setPrecio(cambio);
+    				aceptado = true;
+    				break;
+    			}
+    		}
+    	}
+    	
+    	else if (opcion == 4) {
+    		
+    		String tipo = input("Ingrese el tipo de menú de su producto al que quiere modificar (ServicioHabitacion o Comedor)");
+    		
+    		for(MenuRestaurante r: productos) {
+    			String tipo2 = r.getTipo();
+    			if (tipo.equals(tipo2)) {
+    				System.out.println("\nIngrese la opcion que quiere actualizar");
+    	        	System.out.println("1- Actualizar precio del producto");
+    	        	System.out.println("2- Actualizar hora de inicio de disponibilidad del producto");
+    	        	System.out.println("3- Actualizar hora del final de la disponibilidad del producto");
+    	        	int eleccion = Integer.parseInt(input(""));
+    	        	
+    	        	if (eleccion == 1) {
+    	        		float cambio = Float.parseFloat(input("Ingrese el nuevo precio"));
+    	        		r.setPrecio(cambio);
+    	        	}
+    	        	else if (eleccion == 2) {
+    	        		String cambio = input("Ingrese la nueva hora");
+    	        		r.setHoraInicio(cambio);
+    	        	}
+    	        	else if (eleccion == 2) {
+    	        		String cambio = input("Ingrese la nueva hora");
+    	        		r.setHoraFinal(cambio);
+    	        	}
+    	        	aceptado = true;
+    	        	break;
+    			}
+    		}
+    		
+    	}
+    	
+    	
+    	if (aceptado) {
+    		System.out.println(respuesta);
+    	}
+    	else {
+    		System.out.println("Hubo un error, no se pudo hacer el cambio");
+    	}
     	
     }
 
@@ -426,12 +545,12 @@ public class Hotel {
 			
 			
 			if (tipo.equals("Comedor")) {
-				Comedor producto = new Comedor(nombre, precio, horaInicio, horaFinal);
+				Comedor producto = new Comedor(nombre, tipo, precio, horaInicio, horaFinal);
 				productos.add(producto);
 				
 			}
 			if (tipo.equals("ServicioHabitacion")) {
-				ServicioHab producto = new ServicioHab(nombre, precio, horaInicio, horaFinal);
+				ServicioHab producto = new ServicioHab(nombre, tipo, precio, horaInicio, horaFinal);
 				productos.add(producto);
 			}
 			
