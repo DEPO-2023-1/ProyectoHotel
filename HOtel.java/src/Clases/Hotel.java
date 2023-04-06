@@ -78,6 +78,8 @@ public class Hotel {
             if(servicio.equals(i.getProducto())){
                 valor=i.getCantidad()-1;
                 i.setCantidad(valor);
+                ConsumoHot servicio1=new ConsumoHot(IDHabitacion, "consumo",servicio);
+                consumosHotel.add(servicio1);
                 if(i.getCantidad()==0){
                     inventarios.remove(i);
                 }
@@ -105,6 +107,8 @@ public class Hotel {
             if(servicio.equals(i.getProducto())){
                 valor=i.getCantidad()-1;
                 i.setCantidad(valor);
+                ConsumoHot servicio1=new ConsumoHot(IDHabitacion, "pago",servicio);
+                consumosHotel.add(servicio1);
                 if(i.getCantidad()==0){
                     inventarios.remove(i);
                 break;
