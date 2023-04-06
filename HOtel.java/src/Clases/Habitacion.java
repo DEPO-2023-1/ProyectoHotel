@@ -157,6 +157,9 @@ public abstract class Habitacion implements Serializable{
 	public float getPrecioF() {
 		return precioF;
 	}
+	public ArrayList<ConsumoHab> getConsumos(){
+		return consumosHab;
+	}
 
 	public float calcularPrecioIntermedio(int capacidadNino, int capaciodadAdulto, Boolean balcon, Boolean cocina,
 	Boolean vista, float precioI){
@@ -215,6 +218,12 @@ public abstract class Habitacion implements Serializable{
 			
 		}
 		return precioIntermedio + aumento;
+	}
+
+	public void eliminarConsumos(){
+		for(ConsumoHab ch: consumosHab){
+			consumosHab.remove(ch);
+		}
 	}
 
 	public String getTipo() {

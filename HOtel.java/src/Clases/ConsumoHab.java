@@ -1,8 +1,7 @@
 package Clases;
-import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ConsumoHab implements Serializable{
+public class ConsumoHab {
     
     //atributos clases//
     private ArrayList<ConsumoHot> ConsumosHabitacion;
@@ -22,6 +21,7 @@ public class ConsumoHab implements Serializable{
         this.tipo = tipo;
         this.servicio = servicio;
 
+
     }
 
     //metodos//
@@ -35,5 +35,8 @@ public class ConsumoHab implements Serializable{
         return servicio;
     }
 
+    public ArrayList<Servicio> getServicios(){
+        return servicios;
+    }
     
 }
