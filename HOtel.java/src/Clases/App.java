@@ -17,21 +17,24 @@ public class App {
     public void mostrarMenu(int opcion) {
     	
     	if (opcion == 1) {
-    		System.out.println("1- Cargar Informacion hotel con archivos");
-    		System.out.println("2- Cargar Informacion Habitaciones manualmente");
-    		System.out.println("3- Actualizar infomación del hotel");
+			System.out.println("\n////////Bienvenido al menu de administradores/////////");
+    		System.out.println("\n1- Cargar Informacion hotel con archivos");
+    		System.out.println("\n2- Cargar Informacion Habitaciones manualmente");
+    		System.out.println("\n3- Actualizar infomación del hotel");
     	}
     	else if (opcion == 2) {
-    		System.out.println("1- Crear una reserva");
-    		System.out.println("2- Cancelar una reserva");
-    		System.out.println("3- Hacer Checkout");
-			System.out.println("4- Consultar inventario");
-			System.out.println("5- Condultar informaicon habitaciones");
+			System.out.println("\n ////////Bienvenido al menu de recepción////////");
+    		System.out.println("\n1- Crear una reserva");
+    		System.out.println("\n2- Cancelar una reserva");
+    		System.out.println("\n3- Hacer Checkout");
+			System.out.println("\n4- Consultar inventario");
+			System.out.println("\n5- Condultar informaicon habitaciones");
     	}
     	else if (opcion == 3) {
-    		System.out.println("1- Agregar consumo a una habitacion");
-    		System.out.println("2- Agregar un pago de un consumo");
-    		System.out.println("3- Hacer factura");
+			System.out.println("\n////////Bienvenido al menu de administradores////////");
+    		System.out.println("\n1- Agregar consumo a una habitacion");
+    		System.out.println("\n2- Agregar un pago de un consumo");
+    		System.out.println("\n3- Hacer factura");
     	}
     	
     	
@@ -60,7 +63,7 @@ public class App {
                 	
 
 	                mostrarMenu(usuario);
-					System.out.println("0- salir de la apliacacion");
+					System.out.println("\n0- salir de la aplicacion\n");
 	
 	                int opcion = Integer.parseInt((input("Seleccione una opcion por favor: ")));
 	
@@ -114,7 +117,7 @@ public class App {
 	            }
                 else {
                 	System.out.println("Usuario y/o contraseña incorrecta");
-					System.out.println("1- Salir de la apliacion");
+					System.out.println("\n1- Salir de la aplicacion");
 					System.out.println("2- Seguir");
 					int opcion = Integer.parseInt(input(""));
 					if (opcion == 1){
