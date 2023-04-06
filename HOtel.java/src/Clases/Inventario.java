@@ -1,11 +1,9 @@
 package Clases;
 import java.io.*;
-import java.util.ArrayList;
+
 
 public class Inventario implements Serializable{
 
-    //atributos clase//
-    private ArrayList<ConsumoHot> consumoInventarios;
 
     private String producto;
     private int cantidad;

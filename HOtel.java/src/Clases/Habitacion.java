@@ -13,7 +13,7 @@ public abstract class Habitacion implements Serializable{
 	private ArrayList<Reserva> reservas;
 	private ArrayList<Grupo> grupos;
 	private ArrayList<ConsumoHab> consumosHab;
-	private ArrayList<Factura> facturas;
+
 
 
 	//atributos//
@@ -36,7 +36,6 @@ public abstract class Habitacion implements Serializable{
 		this.temporadas = new ArrayList<Temporada>();
 		this.reservas = new ArrayList<Reserva>();
 		this.grupos = new ArrayList<Grupo>();
-		this.facturas = new ArrayList<Factura>();
 		this.consumosHab = new ArrayList<ConsumoHab>();
 		this.idHabitacion = idHabitacion;
 		this.tipo = tipo;
@@ -115,6 +114,16 @@ public abstract class Habitacion implements Serializable{
 			}	
 		}
 		
+	}
+	
+	public void delreserva(Date inicialDate, Date finalDate) {
+		for (Reserva r: reservas) {
+			Date dateInicio = r.getFechaInicio();
+			Date dateFinal = r.getFechaFin();
+			if ((dateInicio.equals(inicialDate)) && (dateFinal.equals(finalDate))) {
+				reservas.remove(r);
+			}
+		}
 	}
 	
 	

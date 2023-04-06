@@ -15,7 +15,6 @@ public class Hotel {
     private ArrayList<Servicio> servicios;
     private ArrayList<ConsumoHot> consumosHotel;
     private ArrayList<Habitacion> habitaciones;
-    private ArrayList<Usuario> usuarios;
     private ArrayList<Inventario> inventarios;
     private ArrayList<MenuRestaurante> productos;
 
@@ -119,6 +118,122 @@ public class Hotel {
         System.out.println("Pago exitoso");
     }
 
+<<<<<<< HEAD
+=======
+	public void consultarHabitacion(){
+
+		String IDHabitacion = input("Ingrese el ID de la habitacion");
+		
+		System.out.println("\nIngrese la opcion que quiere consultar");
+    	System.out.println("1- Ubicacion");
+    	System.out.println("2- Tipo");
+    	System.out.println("3- Capacidad maxima de niños");
+		System.out.println("4- Capacidad maxima de adultos");
+		System.out.println("5- Balcon");
+		System.out.println("6- Cocina");
+		System.out.println("7- Vista");
+		System.out.println("8- Precio");
+		System.out.println("9- Reservadas en una determinada fecha");
+
+		int opcion = Integer.parseInt(input(""));
+
+		if (opcion == 9){
+			for(Grupo g: grupos) {
+				String nombre = g.getIDHabitacion();
+				if (nombre.equals(IDHabitacion)) {
+					
+					Date reservaInicio = g.getReservaInicio();
+					Date reservaFinal = g.getReservaFinal();
+					
+					int inicialAnio = Integer.parseInt(input("Ingrese el año del dia de la reserva"));
+			        int inicialMes = Integer.parseInt(input("Ingrese el mes de día de la reserva"));
+			        int inicialDia = Integer.parseInt(input("Ingrese el día de la reserva"));
+			        
+			        @SuppressWarnings("deprecation")
+					Date inicialDate = new Date(inicialAnio, inicialMes, inicialDia);
+
+			        if ((reservaInicio.before(inicialDate)) && (reservaFinal.after(inicialDate))) {
+			        	ArrayList<String> nombresList = g.getNombresHuespedes();
+						System.out.println("Los huespeds que ocupan esta habitacion en esta fecha son:");
+			        	for(String s: nombresList) {
+			        		System.out.println(s);
+			        	}
+			        }
+				}
+			}
+		}
+		
+		else {
+			for (Habitacion h:habitaciones) {
+				String nombre = h.getIdHabitacion();
+				if (nombre.equals(IDHabitacion)) {
+					if (opcion == 1) {
+						System.out.println(h.getUbicacion());
+					}
+					else if (opcion == 2) {
+						System.out.println(h.getTipo());
+					}
+					else if (opcion == 3) {
+						System.out.println(h.getCapacidadNino());
+					}
+					else if (opcion == 4) {
+						System.out.println(h.getCapaciodadAdulto());
+					}
+					else if (opcion == 5) {
+						System.out.println(h.getBalcon());
+					}
+					else if (opcion == 6) {
+						System.out.println(h.getCocina());
+					}
+					else if (opcion == 7) {
+						System.out.println(h.getVista());
+					}
+					else if (opcion == 8) {
+						System.out.println(h.getPrecioF());
+					}
+				}
+			}
+		}
+
+
+
+	}
+
+	public void consultarInventario(){
+		
+		System.out.println("\nIngrese la opcion que quiere consultar");
+    	System.out.println("1- Todo el inventario");
+    	System.out.println("2- La cantidad de un producto");
+    	
+    	int opcion = Integer.parseInt(input(""));
+    	
+    	if (opcion == 1) {
+    		
+    		System.out.println("\nEl inventario es el siguiente:\n");
+    		System.out.println("\nProducto-------------cantidad\n");
+    		for (Inventario i: inventarios) {
+    			String nombre = i.getProducto();
+    			int cantidad = i.getCantidad();
+    			System.out.println(nombre+"-------------"+cantidad);
+    		}
+    		
+    	}
+    	
+    	else if (opcion == 2) {
+    		String producto = input("Ingrese el nombre del producto");
+    		System.out.println("La cantidad de su producto es");
+    		for (Inventario i: inventarios) {
+    			String nombre = i.getProducto();
+    			if (nombre.equals(producto)) {
+    				int cantidad = i.getCantidad();
+    				System.out.println("La cantidad de su producto es: "+cantidad);
+    			}
+    		}
+    	}
+
+	}
+
+>>>>>>> a2c23bf7ce9b84389d56b8517ea5933eec7de3f8
     public void crearReserva(){
     	
     	int inicialAnio = Integer.parseInt(input("Ingrese el año del dia de inicio del reserva"));
@@ -142,7 +257,7 @@ public class Hotel {
 		}
 
         else {
-        	Grupo grupo = new Grupo(IDHabitacion);
+        	Grupo grupo = new Grupo(IDHabitacion, inicialDate, finalDate);
         	boolean centinela = true;
         	while(centinela) {
         		agregarHuespedGrupo(grupo);
@@ -156,6 +271,7 @@ public class Hotel {
         	}
 	        grupos.add(grupo);
 	        agregarReserva(grupo, inicialDate, finalDate, IDHabitacion);
+	        System.out.println("Se ha agregado su reserva");
 	        
         }
     }
@@ -213,7 +329,43 @@ public class Hotel {
     }
 
     public void cancelarReserva(){
-
+    	
+    	String respuesta = "Por favor espere que pasen 48 horas despues de reservar para cancelar la reserva";
+    	boolean verdad = Boolean.parseBoolean(input("Ingrese true si su reserva se hizo hace mas de 48 horas, si no ingrese false"));
+    	if (verdad) {
+    		String IDHabitacion = input("Ingrese el ID de su reserva");
+    		
+    		int inicialAnio = Integer.parseInt(input("Ingrese el año del dia de inicio del reserva"));
+            int inicialMes = Integer.parseInt(input("Ingrese el mes de día del inicio de reserva"));
+            int inicialDia = Integer.parseInt(input("Ingrese el día del inicio de reserva"));
+            int finalAnio = Integer.parseInt(input("Ingrese el año del dia del final de reserva"));
+            int finalMes = Integer.parseInt(input("Ingrese el mes de día del final de reserva"));
+            int finalDia = Integer.parseInt(input("Ingrese el día del final de reserva"));
+            
+            @SuppressWarnings("deprecation")
+    		Date inicialDate = new Date(inicialAnio, inicialMes, inicialDia);
+            @SuppressWarnings("deprecation")
+    		Date finalDate = new Date(finalAnio, finalMes, finalDia);
+            
+            for (Habitacion h: habitaciones) {
+            	String nombre = h.getIdHabitacion();
+            	if (nombre.equals(IDHabitacion)) {
+            		h.delreserva(inicialDate, finalDate);
+            	}
+            }
+            
+            for (Grupo g: grupos) {
+            	String nombre2 = g.getIDHabitacion();
+            	Date dateInicio = g.getReservaInicio();
+    			Date dateFinal = g.getReservaFinal();;
+    			if ((nombre2.equals(IDHabitacion))&&(dateInicio.equals(inicialDate)) && (dateFinal.equals(finalDate))) {
+    				grupos.remove(g);
+    			}
+            }
+            respuesta  = "Reserva cancelada";
+    	}
+    	System.out.println(respuesta);
+    
     }
 
     public void checkOut(){
@@ -248,26 +400,96 @@ public class Hotel {
 
     public void cargarHotel() throws IOException{
     	
+<<<<<<< HEAD
     	String Habitaciones = input("Ingrese la ruta de archivo con la informacion de las habitaciones");
     	String Usuario = input("Ingrese la ruta de archivo con la informacion de los usuarios");
+=======
+    	String habitaciones = input("Ingrese la ruta de archivo con la informacion de las habitaciones");
+>>>>>>> a2c23bf7ce9b84389d56b8517ea5933eec7de3f8
     	String inventario = input("Ingrese la ruta de archivo con la informacion del inventario");
     	String Servicio = input("Ingrese la ruta de archivo con la informacion de los servicios");
     	String menuComedor = input("Ingrese la ruta de archivo con la informacion del menu del comedor");
     	String menuCuarto = input("Ingrese la ruta de archivo con la informacion del menu del servicio al cuarto");
     	String temporada = input("Ingrese la ruta de archivo con la informacion de las temporada");
     	
+<<<<<<< HEAD
     	cargarHabitacion(Habitaciones);
     	cargarUsuarios(Usuario);
+=======
+    	cargarHabitacion(habitaciones);
+>>>>>>> a2c23bf7ce9b84389d56b8517ea5933eec7de3f8
     	cargarInventario(inventario);
     	cargarServicio(Servicio);
     	cargarMenuComedor(menuComedor);
     	cargarMenuCuarto(menuCuarto);
     	cargarTemporada(temporada);
+
+		System.out.println("La carga ha sido exitosa");
     	
     }
 
     public void cargarHotelManual(){
+<<<<<<< HEAD
 
+=======
+    	
+    	System.out.println("Ingrese la opcion que quiere actualizar");
+    	System.out.println("1- Cargar informaicon habitaciones");
+    	System.out.println("2- Cargar informaicon servicios");
+    	int opcion = Integer.parseInt(input(""));
+    	
+	    if (opcion == 1) {
+	    	String idHabitacion = input("Ingrese el ID de la habitacion");
+			String tipo = input("Ingrese el tipo de la habitacion");
+			String ubicacion = input("Ingrese la ubicacion de la habitacion");
+			int capacidadNino = Integer.parseInt(input("Ingrese la cantidad maxima de niños de la habitacion"));
+			int capaciodadAdulto = Integer.parseInt(input("Ingrese la cantidad maxima de adultos de la habitacion"));
+			Boolean balcon = Boolean.parseBoolean(input("Ingrese true si la habitacion tiene Balcon, si no ingrese false"));
+			Boolean cocina = Boolean.parseBoolean(input("Ingrese true si la habitacion tiene Cocina, si no ingrese false"));
+			Boolean vista = Boolean.parseBoolean(input("Ingrese true si la habitacion tiene Vista, si no ingrese false"));
+			float PrecioI = Float.parseFloat(input("Ingrese el precio base de la habitacion"));
+	    	
+			if (tipo.equals("Standar")) {
+				Standard habitacion = new Standard(idHabitacion, tipo, ubicacion, capacidadNino,
+						capaciodadAdulto, balcon, cocina, vista, PrecioI);
+				habitaciones.add(habitacion);
+				
+			}
+			else if (tipo.equals("Suite")) {
+				Suite habitacion = new Suite(idHabitacion, tipo, ubicacion, capacidadNino,
+						capaciodadAdulto, balcon, cocina, vista, PrecioI);
+				habitaciones.add(habitacion);
+				
+			}
+			else if (tipo.equals("SuitDoble")) {				
+				SuitDoble habitacion = new SuitDoble(idHabitacion, tipo, ubicacion, capacidadNino,
+						capaciodadAdulto, balcon, cocina, vista, PrecioI);
+				habitaciones.add(habitacion);
+			}
+	    }
+	    
+	    else if (opcion == 2) {
+	    	
+	    	String tipo = input("Ingrese si es menu del comedor o del servicio a la habitacion");
+			String nombre = input("Ingrese el nombre del producto");
+			float precio = Float.parseFloat(input("Ingrese el precio base del producto"));
+			String horaInicio = input("Ingrese el la hora de inicio de disponibilidad del producto");
+			String horaFinal = input("Ingrese el la hora final de disponibilidad del producto");
+			
+			
+			if (tipo.equals("Comedor")) {
+				Comedor producto = new Comedor(nombre, tipo, precio, horaInicio, horaFinal);
+				productos.add(producto);
+				
+			}
+			if (tipo.equals("ServicioHabitacion")) {
+				ServicioHab producto = new ServicioHab(nombre, tipo, precio, horaInicio, horaFinal);
+				productos.add(producto);
+			}
+	    	
+	    }
+	    
+>>>>>>> a2c23bf7ce9b84389d56b8517ea5933eec7de3f8
     }
 
     public void actualizarInformacion(){
@@ -309,12 +531,8 @@ public class Hotel {
 						capaciodadAdulto, balcon, cocina, vista, PrecioI);
 				habitaciones.add(habitacion);
 			}
-			
-			linea = lector.readLine();
-		}
-		lector.close();
-	}
 
+<<<<<<< HEAD
     private void cargarUsuarios(String Usuario) throws IOException{
     	
     	File archivo = new File(Usuario);
@@ -344,14 +562,20 @@ public class Hotel {
 				usuarios.add(usuario);
 			}
 			
+=======
+>>>>>>> a2c23bf7ce9b84389d56b8517ea5933eec7de3f8
 			linea = lector.readLine();
 		}
 		lector.close();
 	}
     	
+<<<<<<< HEAD
     	
 
     private void cargarInventario(String inventario) throws IOException{
+=======
+    private void cargarInventario(String rutinventario) throws IOException{
+>>>>>>> a2c23bf7ce9b84389d56b8517ea5933eec7de3f8
     	
     	File archivo = new File(inventario);
 		BufferedReader lector = new BufferedReader(new FileReader(archivo));

@@ -1,11 +1,14 @@
 package Clases;
+<<<<<<< HEAD
 import java.util.ArrayList;
+=======
+import java.io.Serializable;
+
+>>>>>>> a2c23bf7ce9b84389d56b8517ea5933eec7de3f8
 
 public class ConsumoHab {
     
-    //atributos clases//
-    private ArrayList<ConsumoHot> ConsumosHabitacion;
-    private ArrayList<Servicio> servicios;
+
 
     //atributos//
 
@@ -35,8 +38,13 @@ public class ConsumoHab {
         return servicio;
     }
 
+<<<<<<< HEAD
     public ArrayList<Servicio> getServicios(){
         return servicios;
+=======
+    public String getTipo(){
+        return tipo;
+>>>>>>> a2c23bf7ce9b84389d56b8517ea5933eec7de3f8
     }
     
 }
