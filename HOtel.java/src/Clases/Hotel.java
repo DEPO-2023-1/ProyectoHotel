@@ -65,8 +65,10 @@ public class Hotel {
     	int valor=0;
     	String IDHabitacion = input("Ingrese la habitacion");
     	String servicio = input("Ingrese el servcio consumido");
+    	int menu_o_servicio = Integer.parseInt(input("Ingrese 1 si su servicio es de ¨Menu Restaurante¨, de lo contrario ingrese 2 si su servicio es de otra clase"));
     	
-    	for (Habitacion h: habitaciones) {
+        factura(IDHabitacion, servicio, menu_o_servicio);
+        for (Habitacion h: habitaciones) {
 			String nombre = h.getIdHabitacion();
 			if (nombre.equals(IDHabitacion)) {
 				h.agregarConsumo(IDHabitacion, servicio);
@@ -134,7 +136,7 @@ public class Hotel {
         }
         String valors = Float.toString(valor);
         System.out.println(servicio+".........................................."+valors);
-        System.out.println("Pago exitoso");
+        System.out.println("Proceso exitoso");
     }
 
     public void crearReserva(){
