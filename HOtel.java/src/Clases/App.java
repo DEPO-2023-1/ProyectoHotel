@@ -104,9 +104,6 @@ public class App {
 						else if (opcion == 2) {
 							hotel.agregarPago();
 						}
-						else if (opcion == 3) {
-							hotel.factura();
-						}
 					}
 					
 					if (opcion == 0)

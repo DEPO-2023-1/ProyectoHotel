@@ -1,6 +1,4 @@
 package Clases;
-import java.util.ArrayList;
-import java.io.Serializable;
 
 
 public class ConsumoHab {
