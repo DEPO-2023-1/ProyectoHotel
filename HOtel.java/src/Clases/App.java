@@ -181,7 +181,7 @@ public class App {
 		hotel = h1;
 		}
 		else {
-			System.out.println("hola");
+
 		Hotel hotel1 = new Hotel();
 		hotel = hotel1;
 		}
