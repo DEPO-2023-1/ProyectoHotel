@@ -54,8 +54,8 @@ public class App {
 
 				int usuario = Integer.parseInt(input(""));
 
-                String login = input("Ingrese su Login por favor: ");
-                String contrasena = input("Ingrese su contraseña por favor: ");
+                String login = input("Ingrese su Login por favor ");
+                String contrasena = input("Ingrese su contraseña por favor ");
                 
                 boolean tipo = hotel.seleccionarUsuario(login, contrasena, usuario);
 				
