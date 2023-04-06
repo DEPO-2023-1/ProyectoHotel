@@ -1,7 +1,8 @@
 package Clases;
 
+import java.io.Serializable;
 
-public class ConsumoHab {
+public class ConsumoHab implements Serializable{
 
     
 

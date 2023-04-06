@@ -1,6 +1,8 @@
 package Clases;
 
-public abstract class MenuRestaurante {
+import java.io.Serializable;
+
+public abstract class MenuRestaurante implements Serializable{
 
 	private String nombre;
 	private float precio;
