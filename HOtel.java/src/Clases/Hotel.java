@@ -62,7 +62,7 @@ public class Hotel {
     }
 
     public void agregarConsumo(){
-    	
+    	int valor=0;
     	String IDHabitacion = input("Ingrese la habitacion");
     	String servicio = input("Ingrese el servcio consumido");
     	
@@ -73,11 +73,18 @@ public class Hotel {
 				break;
 			}
     	}
+        for(Inventario i:inventarios){
+            if(servicio.equals(i.getProducto())){
+                valor=i.getCantidad()-1;
+                i.setCantidad(valor);
+                break;
+            }
+        }
     	
     	
     }
     public void agregarPago(){
-    	
+    	int valor=0;
     	String IDHabitacion = input("Ingrese la habitacion");
     	String servicio = input("Ingrese el servcio consumido");
         int menu_o_servicio = Integer.parseInt(input("Ingrese 1 si su servicio es de ¨Menu Restaurante¨, de lo contrario ingrese 2 si su servicio es de otra clase"));
@@ -90,7 +97,13 @@ public class Hotel {
 				break;
 			}
     	}
-    	
+        for(Inventario i:inventarios){
+            if(servicio.equals(i.getProducto())){
+                valor=i.getCantidad()-1;
+                i.setCantidad(valor);
+                break;
+            }
+        }
     }
     
     public void factura(String IDHabitacion, String servicio, int menu_o_servicio) {
