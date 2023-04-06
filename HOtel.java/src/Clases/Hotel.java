@@ -77,6 +77,9 @@ public class Hotel {
             if(servicio.equals(i.getProducto())){
                 valor=i.getCantidad()-1;
                 i.setCantidad(valor);
+                if(i.getCantidad()==0){
+                    inventarios.remove(i);
+                }
                 break;
             }
         }
@@ -101,7 +104,10 @@ public class Hotel {
             if(servicio.equals(i.getProducto())){
                 valor=i.getCantidad()-1;
                 i.setCantidad(valor);
+                if(i.getCantidad()==0){
+                    inventarios.remove(i);
                 break;
+                }
             }
         }
     }
