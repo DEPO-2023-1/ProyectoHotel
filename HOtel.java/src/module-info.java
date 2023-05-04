@@ -6,4 +6,5 @@
  *
  */
 module ProyectoHotel {
+	requires java.desktop;
 }
